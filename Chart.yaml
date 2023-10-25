@@ -1,0 +1,19 @@
+apiVersion: v2
+annotations:
+  catalog.cattle.io/display-name: CaaS Carbon Footprint
+name: caas-carbon-footprint
+description: A Helm chart for carbon footprint measurement
+version: "0.0.1"
+appVersion: "0.3"
+keywords:
+  - monitoring
+dependencies:
+  - name: kepler
+    version: "0.5.2"
+    repository: "https://sustainable-computing-io.github.io/kepler-helm-chart"
+sources:
+  - https://github.com/sustainable-computing-io/kepler
+maintainers:
+  - name: eumel8
+    email: f.kloeker@telekom.de
+    url: https://www.telekom.com

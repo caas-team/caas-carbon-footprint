@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    release: rancher-monitoring
+  name: rancher-monitoring-kepler-exporter
+spec:
+  endpoints:
+  - interval: 30s
+    metricRelabelings:
+    - action: replace
+      regex: (.*)
+      sourceLabels:
+      - container_namespace
+      targetLabel: namespace
+    port: http
+    relabelings:
+    - action: replace
+      regex: (.*)
+      replacement: $1
+      sourceLabels:
+      - __meta_kubernetes_pod_node_name
+      targetLabel: instance
+    scheme: http
+  jobLabel: app.kubernetes.io/name
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: exporter

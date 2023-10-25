@@ -1,0 +1,7 @@
+kepler:
+  global:
+    namespace: cattle-monitoring-system
+  image:
+    repository: mtr.devops.telekom.de/caas/kepler
+    pullPolicy: Always
+    tag: 0.5.2
