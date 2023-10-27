@@ -1,0 +1,23 @@
+# flask & prometheus & jinja templates
+aiohttp
+click
+Flask
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+waitress
+Werkzeug
+# matrix webhook bot
+markdown
+matrix-nio
+# flask input validation
+marshmallow
+# monitoring
+#prometheus_client
+#flask-prometheus
+#prometheus_flask_exporter
+# entsoe modul
+entsoe-py
+jq
+xmltodict
