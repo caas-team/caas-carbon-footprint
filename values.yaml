@@ -5,3 +5,8 @@ kepler:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
     tag: release-0.6.1
+entsoe:
+  image:
+    repository: mtr.devops.telekom.de/caas/entsoe
+    pullPolicy: Always
+    tag: latest

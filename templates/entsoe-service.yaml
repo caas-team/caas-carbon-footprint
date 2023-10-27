@@ -1,0 +1,14 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: entsoe
+  labels:
+    app: entsoe
+spec:
+  selector:
+    app: entsoe
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9091

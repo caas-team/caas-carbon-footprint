@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     release: rancher-monitoring
-  name: rancher-monitoring-kepler-exporter
+  name: kepler-exporter
 spec:
   endpoints:
   - interval: 30s
