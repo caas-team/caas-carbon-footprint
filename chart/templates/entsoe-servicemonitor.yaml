@@ -1,0 +1,23 @@
+{{ if .Values.entsoe.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}
+    {{- if .Values.rancher.enabled }}
+    release: rancher-monitoring
+    {{- end }}
+  name: entsoe-{{ include "caas-carbon-footprint.fullname" . }}-entsoe
+spec:
+  endpoints:
+  - interval: 30m
+    path: /metrics
+    port: http
+    scheme: http
+  jobLabel: app.kubernetes.io/name
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: entsoe
+      {{- include "caas-carbon-footprint.selectorLabels" . | nindent 6 }}-entsoe
+{{ end }}

@@ -2,8 +2,11 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
+    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}
+    {{- if .Values.rancher.enabled }}
     release: rancher-monitoring
-  name: rancher-monitoring-kepler-exporter
+    {{- end }}
+  name: {{ include "caas-carbon-footprint.fullname" . }}-kepler
 spec:
   endpoints:
   - interval: 30s
@@ -25,4 +28,4 @@ spec:
   jobLabel: app.kubernetes.io/name
   selector:
     matchLabels:
-      app.kubernetes.io/component: exporter
+      {{- include "kepler.selectorLabels" . | nindent 6 }}
