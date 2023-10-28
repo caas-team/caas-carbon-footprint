@@ -35,7 +35,7 @@ For sure, we work in the Enterprise Business, most of our hosted application mus
 
 [Kepler](https://github.com/sustainable-computing-io/kepler) (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe performance counters and other system stats, use ML models to estimate workload energy consumption based on these stats, and exports them as Prometheus metrics. With Kepler Dashboard this stats are visible in Grafana:
 
-<img src="images/Traffic_FRA_DEU.jpg.webp">
+<img src="images/kepler.png">
 
 We provide a bundled [Helm Chart](chart) with the origin Kepler chart, to install on cluster level, and a ServiceMonitor which rewrites the namespace label. With that the customer can collect namespaces metrics in [CaaS Project Monitoring](https://github.com/caas-team/caas-project-monitoring) and make the metrics visible on project level.
 
@@ -44,6 +44,8 @@ Kepler has also the option to operate with your own [model server](https://githu
 ## ENTSO-E
 
 [Entso-e](https://transparency.entsoe.eu/dashboard/show) provides central collection and publication of electricity generation in the EU region. It has a [Restful API](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html) to query power generation in EU regions like Germany separated by generation type like Brown Coal, Gas, Oil, Solar, Nuclear, Wind.
+
+<img src="images/entsoe.png">
 
 There is a [Python Package](https://github.com/EnergieID/entsoe-py) available to query the API. With this [Flask App](flask/app.py) the related data are collected by type and provided as Prometheus metrics. This [Dockerfile](Dockerfile) builds an image which can be used for a ServiceMonitor to pump the data to Prometheus.
 
