@@ -24,7 +24,7 @@ entsoe:
     #repository: mtr.devops.telekom.de/caas/entsoe
     #tag: latest
     repository: ghcr.io/caas-team/entsoe/entsoe
-    tag: main
+    tag: 0.0.3
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
