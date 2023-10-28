@@ -34,8 +34,9 @@ jobs:
           helm version
           HELM_EXPERIMENTAL_OCI=1 helm registry login ${GHR} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           cd chart
-          helm lint chart
-          helm package chart
-          HELM_EXPERIMENTAL_OCI=1 helm push $(ls *.tgz| head -1) oci://${GHR}/${{ github.repository_owner }}/charts
+          helm dependency build
+          helm lint .
+          helm package .
+          helm push $(ls *.tgz| head -1) oci://${GHR}/${{ github.repository_owner }}/charts
         env:
           GHR: ghcr.io
