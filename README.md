@@ -6,7 +6,7 @@ This repository contains stuff related [Sustainable Computing](https://sustainab
 
 Climate change is an omnipresent issue. We are confronted with this in the news every day. The state should do something, or someone, preferably someone else. In addition to all the pollution from cars, planes, ships, the largest producers of carbon dioxide are: data centers. The Internet has had an indescribable career over the last 30 years. If you look at the traffic density at the German internet node De-Cix, there is an all-time high almost every day.
 
-<img src="Traffic_FRA_DEU.jpg.webp">
+<img src="images/Traffic_FRA_DEU.jpg.webp">
 
 (C) https://www.cloudexpoeurope.de/news/de-cix-thomas-king
 
