@@ -19,6 +19,7 @@ kepler:
 # Install Entsoe Exporter
 entsoe:
   enabled: true
+  #entsoe_api_key: 
   image:
     #repository: mtr.devops.telekom.de/caas/entsoe
     #tag: latest

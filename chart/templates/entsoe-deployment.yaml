@@ -32,8 +32,8 @@ spec:
         - name: entsoe_api_key
           valueFrom:
             secretKeyRef:
-              name: ensoe
-              key: ensoe_api_key
+              name: entsoe-{{ include "caas-carbon-footprint.fullname" . }}
+              key: entsoe_api_key
         - name: PYTHONUNBUFFERED
           value: "1"
         - name: entsoe_end
