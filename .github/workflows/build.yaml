@@ -30,10 +30,9 @@ jobs:
           #COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
       - name: Helm lint & package & push
         run: |
-          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-          helm version
-          HELM_EXPERIMENTAL_OCI=1 helm registry login ${GHR} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           cd chart
+          helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
+          helm registry login ${GHR} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           helm dependency build
           helm lint .
           helm package .
