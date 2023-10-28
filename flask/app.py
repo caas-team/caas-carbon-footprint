@@ -20,8 +20,8 @@ def metrics():
     client = EntsoeRawClient(api_key=entsoe_api_key)
     # Compute the time window from yesterday within 1 hour
     today = datetime.today()
-    TwentyFour = (today - timedelta(hours = entsoe_end ))
-    TwentyFive = (today - timedelta(hours = entsoe_start ))
+    TwentyFour = (today - timedelta(hours = int(entsoe_end) ))
+    TwentyFive = (today - timedelta(hours = int(entsoe_start) ))
     start = pd.Timestamp(TwentyFive, tz='Europe/Berlin')
     end = pd.Timestamp(TwentyFour, tz='Europe/Berlin')
     # Relates country is Germany
