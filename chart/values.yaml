@@ -18,9 +18,11 @@ kepler:
 entsoe:
   enabled: true
   image:
-    repository: mtr.devops.telekom.de/caas/entsoe
+    #repository: mtr.devops.telekom.de/caas/entsoe
+    #tag: latest
+    repository: ghcr.io/caas-team/entsoe/entsoe
+    tag: main
     pullPolicy: Always
-    tag: latest
   podSecurityContext:
     fsGroup: 1000
     supplementalGroups:
