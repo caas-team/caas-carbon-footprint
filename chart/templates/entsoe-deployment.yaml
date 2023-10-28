@@ -37,9 +37,9 @@ spec:
         - name: PYTHONUNBUFFERED
           value: "1"
         - name: entsoe_end
-          value: {{ .Values.entsoe.end }}
+          value: "{{ .Values.entsoe.end }}"
         - name: entsoe_start
-          value: {{ .Values.entsoe.start }}
+          value: "{{ .Values.entsoe.start }}"
         #- name: https_proxy
         #  value: "http://10.105.124.65:8084"
         resources:
