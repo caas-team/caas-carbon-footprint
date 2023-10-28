@@ -11,23 +11,29 @@ import xmltodict
 app = Flask(__name__)
 
 # https://github.com/EnergieID/entsoe-py
-ensoe_api_key = environ.get('ensoe_api_key')
+entsoe_api_key = environ.get('entsoe_api_key')
+entsoe_start = environ.get('entsoe_start') or 25
+entsoe_end = environ.get('entsoe_end') or 24
 
 @app.route('/metrics', methods=['GET'])
 def metrics():
-    client = EntsoeRawClient(api_key=ensoe_api_key)
+    client = EntsoeRawClient(api_key=entsoe_api_key)
     # Compute the time window from yesterday within 1 hour
     today = datetime.today()
-    TwentyFour = (today - timedelta(hours = 24))
-    TwentyFive = (today - timedelta(hours = 25))
+    TwentyFour = (today - timedelta(hours = entsoe_end ))
+    TwentyFive = (today - timedelta(hours = entsoe_start ))
     start = pd.Timestamp(TwentyFive, tz='Europe/Berlin')
     end = pd.Timestamp(TwentyFour, tz='Europe/Berlin')
     # Relates country is Germany
     country_code = 'DE'
     
     # Query all energy generation in this time window for this country
-    df_generation = client.query_generation(country_code, start=start,end=end, nett=True)
-    data_dict = xmltodict.parse(df_generation)
+    try:
+        df_generation = client.query_generation(country_code, start=start,end=end, nett=True)
+        data_dict = xmltodict.parse(df_generation)
+    except:
+        message = "No data from API"
+        return message, 500, {'Content-Type': 'text/plain'}
     
     #######################################
     # Filter Biomass

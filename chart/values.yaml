@@ -41,6 +41,10 @@ entsoe:
     readOnlyRootFilesystem: true
     runAsUser: 1000
     runAsGroup: 1000
+  # hours back when entsoe metrics should collected
+  # note: unfortunately no real time data for Germany, must be at least one day back 
+  start: 25
+  end: 24
 # install app in Rancher environment
 rancher:
   enabled:  true
