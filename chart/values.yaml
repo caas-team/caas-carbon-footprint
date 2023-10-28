@@ -1,3 +1,4 @@
+# Install Kepler Exporter from Kepler Chart
 kepler:
   global:
     namespace: cattle-monitoring-system
@@ -5,8 +6,41 @@ kepler:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
     tag: release-0.6.1
+  resources:
+    limits:
+      cpu: 800m
+      memory: 1024Mi
+    requests:
+      cpu: 200m
+      memory: 128Mi
+
+# Install Entsoe Exporter
 entsoe:
+  enabled: true
   image:
     repository: mtr.devops.telekom.de/caas/entsoe
     pullPolicy: Always
     tag: latest
+  podSecurityContext:
+    fsGroup: 1000
+    supplementalGroups:
+    - 1000
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsUser: 1000
+    runAsGroup: 1000
+# install app in Rancher environment
+rancher:
+  enabled:  true

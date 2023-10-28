@@ -2,8 +2,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kepler-dashboards
+  name: {{ include "caas-carbon-footprint.fullname" . }}-dashboards
+  {{- if .Values.rancher.enabled }}
   namespace: cattle-dashboards
+  {{- end }}
   labels:
     grafana_dashboard: "1"
     release: rancher-monitoring
