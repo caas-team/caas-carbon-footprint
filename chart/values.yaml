@@ -2,6 +2,8 @@
 kepler:
   global:
     namespace: cattle-monitoring-system
+  selectorLabels:
+      app.kubernetes.io/name: caas-carbon-footprint
   image:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
@@ -43,6 +45,8 @@ entsoe:
     readOnlyRootFilesystem: true
     runAsUser: 1000
     runAsGroup: 1000
+  serviceMonitor:
+    interval: 10m
   # hours back when entsoe metrics should collected
   # note: unfortunately no real time data for Germany, must be at least one day back 
   start: 25

@@ -28,4 +28,5 @@ spec:
   jobLabel: app.kubernetes.io/name
   selector:
     matchLabels:
-      {{- include "kepler.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: exporter
+      app.kubernetes.io/name: kepler
