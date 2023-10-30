@@ -18,6 +18,7 @@ jobs:
       - name: Login Build Sign Push
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${GHR} -u ${{ github.actor }} --password-stdin
+          docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${MTR}
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           export DOCKER_BUILDKIT=1
           docker build -f Dockerfile -t ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION} .
