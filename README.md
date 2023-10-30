@@ -49,6 +49,53 @@ Kepler has also the option to operate with your own [model server](https://githu
 
 There is a [Python Package](https://github.com/EnergieID/entsoe-py) available to query the API. With this [Flask App](flask/app.py) the related data are collected by type and provided as Prometheus metrics. This [Dockerfile](Dockerfile) builds an image which can be used for a ServiceMonitor to pump the data to Prometheus.
 
+example output with current metrics:
+
+```
+# HELP entsoe_generation_b01 Current generation of energy with Biomass in MW
+# TYPE entsoe_generation_b01 counter
+entsoe_generation_b01 4613
+# HELP entsoe_generation_b02 Current generation of energy with Fossil Brown coal/Lignite in MW
+# TYPE entsoe_generation_b02 counter
+entsoe_generation_b02 3557
+# HELP entsoe_generation_b04 Current generation of energy with Fossil Gas in MW
+# TYPE entsoe_generation_b04 counter
+entsoe_generation_b04 2099
+# HELP entsoe_generation_b05 Current generation of energy with Fossil Hard coal in MW
+# TYPE entsoe_generation_b05 counter
+entsoe_generation_b05 1690
+# HELP entsoe_generation_b09 Current generation of energy with Geothermal in MW
+# TYPE entsoe_generation_b09 counter
+entsoe_generation_b09 21
+# HELP entsoe_generation_b10 Current generation of energy with Hydro Pumped Storage in MW
+# TYPE entsoe_generation_b10 counter
+entsoe_generation_b10 88
+# HELP entsoe_generation_b11 Current generation of energy with Hydro Run-of-river and poundage in MW
+# TYPE entsoe_generation_b11 counter
+entsoe_generation_b11 1289
+# HELP entsoe_generation_b12 Current generation of energy with Hydro Water Reservoir in MW
+# TYPE entsoe_generation_b12 counter
+entsoe_generation_b12 74
+# HELP entsoe_generation_b14 Current generation of energy with Nuclear in MW
+# TYPE entsoe_generation_b14 counter
+entsoe_generation_b14 0
+# HELP entsoe_generation_b16 Current generation of energy with Solar in MW
+# TYPE entsoe_generation_b16 counter
+entsoe_generation_b16 10034
+# HELP entsoe_generation_b17 Current generation of energy with Waste in MW
+# TYPE entsoe_generation_b17 counter
+entsoe_generation_b17 635
+# HELP entsoe_generation_b18 Current generation of energy with Wind Offshore in MW
+# TYPE entsoe_generation_b18 counter
+entsoe_generation_b18 5904
+# HELP entsoe_generation_b19 Current generation of energy with Wind Onshore in MW
+# TYPE entsoe_generation_b19 counter
+entsoe_generation_b19 30747
+# HELP entsoe_generation_sum Current generation of energy summary in MW
+# TYPE entsoe_generation_sum counter
+entsoe_generation_sum 66429
+```
+
 ## Credits
 
 Life is for sharing. If you have an issue with the code or want to improve it, feel free to open an issue or an pull request.
