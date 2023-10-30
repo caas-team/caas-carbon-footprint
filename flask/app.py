@@ -129,8 +129,11 @@ def metrics():
         result_b19=0
     #######################################
     # Summary Energy Generation
-    result_sum = int(result_b01) + int(result_b02) + int(result_b04) + int(result_b04) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b14) + int(result_b16) + int(result_b18) + int(result_b18) + int(result_b19)
-    
+    result_sum = int(result_b01) + int(result_b02) + int(result_b04) + int(result_b05) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b14) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)
+    # Bio efficience
+    result_bio = int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19) / int(result_sum)
+    # Fossil part
+    result_fos = int(result_b02) + int(result_b04) + int(result_b04) / int(result_sum)
     # Print Out Metrics
     counter = "# HELP entsoe_generation_b01 Current generation of energy with Biomass in MW" + "\n"
     counter += "# TYPE entsoe_generation_b01 counter" + "\n"
@@ -174,6 +177,12 @@ def metrics():
     counter += "# HELP entsoe_generation_sum Current generation of energy summary in MW" + "\n"
     counter += "# TYPE entsoe_generation_sum counter" + "\n"
     counter += "entsoe_generation_sum " + str(result_sum) + "\n"
+    counter += "# HELP entsoe_generation_bio Current generation of bio energy summary rate" + "\n"
+    counter += "# TYPE entsoe_generation_bio counter" + "\n"
+    counter += "entsoe_generation_bio " + str(result_bio) + "\n"
+    counter += "# HELP entsoe_generation_fos Current generation of fossil energy summary rate" + "\n"
+    counter += "# TYPE entsoe_generation_fos counter" + "\n"
+    counter += "entsoe_generation_fos " + str(result_fos) + "\n"
     
     #json_data = json.dumps(data_dict)
     #print(json_data,file=open('data.json','w'))
