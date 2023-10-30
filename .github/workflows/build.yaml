@@ -21,21 +21,34 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           export DOCKER_BUILDKIT=1
           docker build -f Dockerfile -t ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION} .
+          docker tag ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION} ${MTR}/caas/${IMAGE}:${VERSION}
           docker push ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION}
-          #cosign sign --key env://COSIGN_KEY --tlog-upload=false ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION}
+          docker push ${MTR}/${ORG}/${IMAGE}:${VERSION}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${MTR}/${ORG}/${IMAGE}:${VERSION}
         env:
-          GHR: ghcr.io
           IMAGE: entsoe
-          #COSIGN_KEY: ${{secrets.COSIGN_KEY}}
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          GHR: ghcr.io
+          MTR: mtr.devops.telekom.de
+          ORG: caas
+          COSIGN_KEY: ${{secrets.COSIGN_KEY}}
           #COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
       - name: Helm lint & package & push
         run: |
           cd chart
           helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
           helm registry login ${GHR} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+          helm registry login ${MTR} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           helm dependency build
           helm lint .
           helm package .
           helm push $(ls *.tgz| head -1) oci://${GHR}/${{ github.repository_owner }}/charts
+          helm push $(ls *.tgz| head -1) oci://${MTR}/${ORG}/charts
         env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           GHR: ghcr.io
+          MTR: mtr.devops.telekom.de
+          ORG: caas
