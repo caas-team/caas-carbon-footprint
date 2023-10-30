@@ -1,5 +1,6 @@
 # Install Kepler Exporter from Kepler Chart
 kepler:
+  # dashboard setting remark: https://www.eia.gov/tools/faqs/faq.php?id=74&t=11
   global:
     namespace: cattle-monitoring-system
   selectorLabels:
