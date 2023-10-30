@@ -22,15 +22,19 @@ entsoe:
   # apply for token here: https://transparency.entsoe.eu/content/static_content/download?path=/Static%20content/API-Token-Management.pdf
   #entsoe_api_key: 
   image:
-    #repository: mtr.devops.telekom.de/caas/entsoe
-    #tag: latest
-    repository: ghcr.io/caas-team/entsoe
-    tag: 0.0.3
+    repository: mtr.devops.telekom.de/caas/entsoe
+    tag: 0.0.4
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
     supplementalGroups:
     - 1000
+  # proxy settings for outside API requests to https://web-api.tp.entsoe.eu:443
+  proxy:
+    enabled: false
+    #host: 10.0.0.1
+    #port: 3128
+    #protocol: http
   resources:
     limits:
       cpu: 200m
@@ -47,6 +51,8 @@ entsoe:
     readOnlyRootFilesystem: true
     runAsUser: 1000
     runAsGroup: 1000
+  # beware of the API request limit 
+  # sec. 1.8 https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
   serviceMonitor:
     interval: 10m
   # hours back when entsoe metrics should collected
@@ -54,5 +60,6 @@ entsoe:
   start: 25
   end: 24
 # install app in Rancher environment
+# this will user Rancher defined namespaces and labels
 rancher:
   enabled:  true
