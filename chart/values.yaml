@@ -19,11 +19,12 @@ kepler:
 # Install Entsoe Exporter
 entsoe:
   enabled: true
+  # apply for token here: https://transparency.entsoe.eu/content/static_content/download?path=/Static%20content/API-Token-Management.pdf
   #entsoe_api_key: 
   image:
     #repository: mtr.devops.telekom.de/caas/entsoe
     #tag: latest
-    repository: ghcr.io/caas-team/entsoe/entsoe
+    repository: ghcr.io/caas-team/entsoe
     tag: 0.0.3
     pullPolicy: Always
   podSecurityContext:
