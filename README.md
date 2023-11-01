@@ -104,7 +104,10 @@ entsoe_generation_fos 0.23437570916352743
 
 Ref: CO2 emissions factor:
 
-https://iinas.org/app/uploads/2023/10/IINAS_2023_KEV_THG_Strom-2022_2030-2050.pdf
+- https://iinas.org/app/uploads/2023/10/IINAS_2023_KEV_THG_Strom-2022_2030-2050.pdf
+- https://impactful.ninja/the-carbon-footprint-of-biomass-energy/
+- https://www.hydropower.org/blog/carbon-emissions-from-hydropower-reservoirs-facts-and-myths
+- https://www.rte-france.com/en/eco2mix/co2-emissions
 
 ## Credits
 
