@@ -22,7 +22,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 20,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -310,8 +309,8 @@
         },
         {
           "datasource": {
-            "uid": "${datasource}"
             "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -530,6 +529,70 @@
         }
       ],
       "title": "CO2g/kwh FOS",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Using data from https://transparency.entsoe.eu/",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 7,
+        "y": 13
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Engergy Index FOS$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg(entsoe_generation_bio)*$ecofactor",
+          "hide": false,
+          "legendFormat": "Engergy Index FOS",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CO2g/kwh ECO",
       "transformations": [],
       "type": "stat"
     },
@@ -1091,7 +1154,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{pod_name}} / {{container_namespace}} / PKG",
@@ -1101,7 +1164,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{pod_name}} / {{container_namespace}} / DRAM",
@@ -1114,7 +1177,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{pod_name}} / {{container_namespace}} / OTHER",
@@ -1127,7 +1190,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
           "hide": false,
           "legendFormat": "{{pod_name}} / {{container_namespace}} / GPU",
           "range": true,
@@ -1712,14 +1775,15 @@
           {
             "selected": true,
             "text": "751",
-            "value": "751"
+            "value": "751",
+            "width": "10"
           }
         ],
         "query": "751",
         "skipUrlSync": false,
         "type": "textbox"
       },
-      {     
+      {
         "current": {
           "selected": false,
           "text": "117",
@@ -1738,7 +1802,7 @@
         "query": "117",
         "skipUrlSync": false,
         "type": "textbox"
-      },    
+      },
       {
         "current": {
           "selected": false,
@@ -1927,7 +1991,7 @@
         },
         "hide": 0,
         "label": "B10 Hydro Pumped Storage CO2g/kWh",
-        "name": "hydro",
+        "name": "hydropump",
         "options": [
           {
             "selected": true,
@@ -1947,7 +2011,7 @@
         },
         "hide": 0,
         "label": "B11 Hydro Run River CO2g/kWh",
-        "name": "hydro",
+        "name": "hydroriver",
         "options": [
           {
             "selected": true,
@@ -1967,7 +2031,7 @@
         },
         "hide": 0,
         "label": "B12 Hydro Water Reservoir CO2g/kWh",
-        "name": "hydro",
+        "name": "hydrores",
         "options": [
           {
             "selected": true,
