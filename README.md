@@ -53,48 +53,58 @@ example output with current metrics:
 
 ```
 # HELP entsoe_generation_b01 Current generation of energy with Biomass in MW
-# TYPE entsoe_generation_b01 counter
-entsoe_generation_b01 4613
+# TYPE entsoe_generation_b01 gauge
+entsoe_generation_b01 4371
 # HELP entsoe_generation_b02 Current generation of energy with Fossil Brown coal/Lignite in MW
-# TYPE entsoe_generation_b02 counter
-entsoe_generation_b02 3557
+# TYPE entsoe_generation_b02 gauge
+entsoe_generation_b02 5135
 # HELP entsoe_generation_b04 Current generation of energy with Fossil Gas in MW
-# TYPE entsoe_generation_b04 counter
-entsoe_generation_b04 2099
+# TYPE entsoe_generation_b04 gauge
+entsoe_generation_b04 3441
 # HELP entsoe_generation_b05 Current generation of energy with Fossil Hard coal in MW
-# TYPE entsoe_generation_b05 counter
-entsoe_generation_b05 1690
+# TYPE entsoe_generation_b05 gauge
+entsoe_generation_b05 1752
 # HELP entsoe_generation_b09 Current generation of energy with Geothermal in MW
-# TYPE entsoe_generation_b09 counter
+# TYPE entsoe_generation_b09 gauge
 entsoe_generation_b09 21
 # HELP entsoe_generation_b10 Current generation of energy with Hydro Pumped Storage in MW
-# TYPE entsoe_generation_b10 counter
-entsoe_generation_b10 88
+# TYPE entsoe_generation_b10 gauge
+entsoe_generation_b10 1044
 # HELP entsoe_generation_b11 Current generation of energy with Hydro Run-of-river and poundage in MW
-# TYPE entsoe_generation_b11 counter
-entsoe_generation_b11 1289
+# TYPE entsoe_generation_b11 gauge
+entsoe_generation_b11 1749
 # HELP entsoe_generation_b12 Current generation of energy with Hydro Water Reservoir in MW
-# TYPE entsoe_generation_b12 counter
-entsoe_generation_b12 74
+# TYPE entsoe_generation_b12 gauge
+entsoe_generation_b12 219
 # HELP entsoe_generation_b14 Current generation of energy with Nuclear in MW
-# TYPE entsoe_generation_b14 counter
+# TYPE entsoe_generation_b14 gauge
 entsoe_generation_b14 0
 # HELP entsoe_generation_b16 Current generation of energy with Solar in MW
-# TYPE entsoe_generation_b16 counter
-entsoe_generation_b16 10034
+# TYPE entsoe_generation_b16 gauge
+entsoe_generation_b16 8852
 # HELP entsoe_generation_b17 Current generation of energy with Waste in MW
-# TYPE entsoe_generation_b17 counter
-entsoe_generation_b17 635
+# TYPE entsoe_generation_b17 gauge
+entsoe_generation_b17 853
 # HELP entsoe_generation_b18 Current generation of energy with Wind Offshore in MW
-# TYPE entsoe_generation_b18 counter
-entsoe_generation_b18 5904
+# TYPE entsoe_generation_b18 gauge
+entsoe_generation_b18 3522
 # HELP entsoe_generation_b19 Current generation of energy with Wind Onshore in MW
-# TYPE entsoe_generation_b19 counter
-entsoe_generation_b19 30747
+# TYPE entsoe_generation_b19 gauge
+entsoe_generation_b19 13107
 # HELP entsoe_generation_sum Current generation of energy summary in MW
-# TYPE entsoe_generation_sum counter
-entsoe_generation_sum 66429
+# TYPE entsoe_generation_sum gauge
+entsoe_generation_sum 44066
+# HELP entsoe_generation_bio Current generation of bio energy summary rate
+# TYPE entsoe_generation_bio gauge
+entsoe_generation_bio 0.7656242908364725
+# HELP entsoe_generation_fos Current generation of fossil energy summary rate
+# TYPE entsoe_generation_fos gauge
+entsoe_generation_fos 0.23437570916352743
 ```
+
+Ref: CO2 emissions factor:
+
+https://iinas.org/app/uploads/2023/10/IINAS_2023_KEV_THG_Strom-2022_2030-2050.pdf
 
 ## Credits
 
