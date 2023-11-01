@@ -42,7 +42,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -94,7 +94,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -112,7 +112,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -130,7 +130,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -148,7 +148,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -166,7 +166,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -184,7 +184,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -202,7 +202,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -220,7 +220,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -238,7 +238,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -256,7 +256,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -274,7 +274,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -292,7 +292,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -310,7 +310,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -345,12 +345,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 0.6
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 0.8
               }
             ]
           }
@@ -373,7 +377,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "",
+          "fields": "/^Engergy Index FOS$/",
           "values": false
         },
         "textMode": "auto"
@@ -386,10 +390,8 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "avg(entsoe_generation_fos)",
           "hide": false,
-          "instant": false,
           "legendFormat": "Engergy Index FOS",
           "range": true,
           "refId": "B"
@@ -415,16 +417,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "yellow",
-                "value": 0.2
-              },
-              {
-                "color": "green",
-                "value": 0.5
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -475,6 +473,70 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Using data from https://transparency.entsoe.eu/",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 0,
+        "y": 13
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Engergy Index FOS$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg(entsoe_generation_fos)*$fosfactor",
+          "hide": false,
+          "legendFormat": "Engergy Index FOS",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CO2g/kwh FOS",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -505,7 +567,7 @@
         "h": 6,
         "w": 19,
         "x": 2,
-        "y": 13
+        "y": 19
       },
       "id": 18,
       "options": {
@@ -679,7 +741,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 25
       },
       "id": 8,
       "panels": [],
@@ -810,7 +872,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 26
       },
       "id": 16,
       "options": {
@@ -877,6 +939,199 @@
         }
       ],
       "title": "Pod/Process Power Consumption (W) in Namespace: $namespace",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "CO2g/h",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 44,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 0,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*DRAM.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*OTHER.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*GPU.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*PKG.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": "prometheus",
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / PKG",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": "prometheus",
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / DRAM",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / OTHER",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*$fosfactor/1000)",
+          "hide": false,
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / GPU",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Pod/Process CO2 FOS Emission (C02g/h) in Namespace: $namespace",
       "type": "timeseries"
     },
     {
@@ -1003,7 +1258,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 46
       },
       "id": 2,
       "options": {
@@ -1200,7 +1455,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 46
       },
       "id": 17,
       "options": {
@@ -1306,7 +1561,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 54
       },
       "id": 15,
       "options": {
@@ -1343,7 +1598,7 @@
       "type": "bargauge"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -1351,7 +1606,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Prometheus",
           "value": "Prometheus"
         },
@@ -1438,12 +1693,32 @@
         "query": "0.000000277777777777778",
         "skipUrlSync": false,
         "type": "constant"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "996",
+          "value": "996"
+        },
+        "hide": 0,
+        "label": "FOS CO2g/kWh",
+        "name": "fosfactor",
+        "options": [
+          {
+            "selected": true,
+            "text": "996",
+            "value": "996"
+          }
+        ],
+        "query": "996",
+        "skipUrlSync": false,
+        "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
-    "to": "now"
+    "from": "2023-11-01T10:03:24.016Z",
+    "to": "2023-11-01T10:34:20.750Z"
   },
   "timepicker": {},
   "timezone": "browser",
