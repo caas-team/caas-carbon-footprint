@@ -767,6 +767,119 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Using data from https://transparency.entsoe.eu/",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CO2 emmission"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 23,
+        "x": 0,
+        "y": 19
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg(entsoe_generation_b02)*$browncoal/1000/1000+avg(entsoe_generation_b05)*$hardcoal/1000/1000+avg(entsoe_generation_b04)*$gas/1000/1000+avg(entsoe_generation_b19)*$windonshore/1000/1000+avg(entsoe_generation_b18)*$windoffshore/1000/1000+avg(entsoe_generation_b16)*$solar/1000/1000+avg(entsoe_generation_b17)*$waste/1000/1000+avg(entsoe_generation_b10)*$hydropump/1000/1000+avg(entsoe_generation_b11)*$hydroriver/1000/1000+avg(entsoe_generation_b12)*$hydrores/1000/1000",
+          "hide": false,
+          "legendFormat": "CO2 emmission",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CO2g/w",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -797,7 +910,7 @@
         "h": 6,
         "w": 19,
         "x": 2,
-        "y": 19
+        "y": 27
       },
       "id": 18,
       "options": {
@@ -971,7 +1084,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 33
       },
       "id": 8,
       "panels": [],
@@ -1103,7 +1216,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 34
       },
       "id": 16,
       "options": {
@@ -1220,8 +1333,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1297,7 +1409,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 44
       },
       "id": 22,
       "options": {
@@ -1414,8 +1526,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1491,7 +1602,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 46
+        "y": 54
       },
       "id": 2,
       "options": {
@@ -1612,8 +1723,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1689,7 +1799,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 46
+        "y": 54
       },
       "id": 17,
       "options": {
@@ -1779,8 +1889,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1795,7 +1904,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 62
       },
       "id": 15,
       "options": {
@@ -2043,13 +2152,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "CaaS Carbon Dashboard",
   "uid": "NhnWODJ4zIBM",
-  "version": 16,
+  "version": 18,
   "weekStart": ""
 }
