@@ -58,7 +58,173 @@
           },
           "mappings": []
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gas"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hard Coal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#010101",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Wind Onshore"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Wind Offshore"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Brown Coal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5c291b",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Waste"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ef3524",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Geothermal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f4001d",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Biomass"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#b9d0b6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hydro Water Res."
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hydro Run-of-river"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Nuclear"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f8f17b",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
@@ -80,7 +246,7 @@
         "pieType": "pie",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -375,7 +541,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "/^Engergy Index FOS$/",
           "values": false
@@ -443,7 +609,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -506,7 +672,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "/^Engergy Index FOS$/",
           "values": false
@@ -570,7 +736,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "/^Engergy Index FOS$/",
           "values": false
@@ -1763,296 +1929,127 @@
         "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "751",
-          "value": "751"
-        },
-        "hide": 0,
-        "label": "FOS CO2g/kWh",
+        "description": "FOS CO2g/kWh",
+        "hide": 2,
         "name": "fosfactor",
-        "options": [
-          {
-            "selected": true,
-            "text": "751",
-            "value": "751",
-            "width": "10"
-          }
-        ],
         "query": "751",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "117",
-          "value": "117"
-        },
-        "hide": 0,
-        "label": "ECO CO2g/kWh",
+        "description": "ECO CO2g/kWh",
+        "hide": 2,
         "name": "ecofactor",
-        "options": [
-          {
-            "selected": true,
-            "text": "117",
-            "value": "117"
-          }
-        ],
         "query": "117",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "230",
-          "value": "230"
-        },
-        "hide": 0,
-        "label": "B01 Biomass CO2g/kWh",
+        "description": "B01 Biomass CO2g/kWh",
+        "hide": 2,
         "name": "biomass",
-        "options": [
-          {
-            "selected": true,
-            "text": "230",
-            "value": "230"
-          }
-        ],
         "query": "230",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "996",
-          "value": "996"
-        },
-        "hide": 0,
-        "label": "B02 Brown Coal CO2g/kWh",
+        "description": "B02 Brown Coal CO2g/kWh",
+        "hide": 2,
         "name": "browncoal",
-        "options": [
-          {
-            "selected": true,
-            "text": "996",
-            "value": "996"
-          }
-        ],
         "query": "996",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "880",
-          "value": "880"
-        },
-        "hide": 0,
-        "label": "B05 Hard Coal CO2g/kWh",
+        "description": "B05 Hard Coal CO2g/kWh",
+        "hide": 2,
         "name": "hardcoal",
-        "options": [
-          {
-            "selected": true,
-            "text": "880",
-            "value": "880"
-          }
-        ],
         "query": "880",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "378",
-          "value": "378"
-        },
-        "hide": 0,
-        "label": "B04 Gas CO2g/kWh",
+        "description": "B04 Gas CO2g/kWh",
+        "hide": 2,
         "name": "gas",
-        "options": [
-          {
-            "selected": true,
-            "text": "378",
-            "value": "378"
-          }
-        ],
         "query": "378",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "39",
-          "value": "39"
-        },
-        "hide": 0,
-        "label": "B14 Nuclear CO2g/kWh",
+        "description": "B14 Nuclear CO2g/kWh",
+        "hide": 2,
         "name": "nuclear",
-        "options": [
-          {
-            "selected": true,
-            "text": "39",
-            "value": "39"
-          }
-        ],
         "query": "39",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "9",
-          "value": "9"
-        },
-        "hide": 0,
-        "label": "B19 Wind Onshore CO2g/kWh",
+        "description": "B19 Wind Onshore CO2g/kWh",
+        "hide": 2,
         "name": "windonshore",
-        "options": [
-          {
-            "selected": true,
-            "text": "9",
-            "value": "9"
-          }
-        ],
         "query": "9",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "4",
-          "value": "4"
-        },
-        "hide": 0,
-        "label": "B18 Wind Offhore CO2g/kWh",
+        "description": "B18 Wind Offhore CO2g/kWh",
+        "hide": 2,
         "name": "windoffshore",
-        "options": [
-          {
-            "selected": true,
-            "text": "4",
-            "value": "4"
-          }
-        ],
         "query": "4",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "26",
-          "value": "26"
-        },
-        "hide": 0,
-        "label": "B16 Solar CO2g/kWh",
+        "description": "B16 Solar CO2g/kWh",
+        "hide": 2,
         "name": "solar",
-        "options": [
-          {
-            "selected": true,
-            "text": "26",
-            "value": "26"
-          }
-        ],
         "query": "26",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "494",
-          "value": "494"
-        },
-        "hide": 0,
-        "label": "B17 Waste CO2g/kWh",
+        "description": "B17 Waste CO2g/kWh",
+        "hide": 2,
         "name": "waste",
-        "options": [
-          {
-            "selected": true,
-            "text": "494",
-            "value": "494"
-          }
-        ],
         "query": "494",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "23",
-          "value": "23"
-        },
-        "hide": 0,
-        "label": "B10 Hydro Pumped Storage CO2g/kWh",
+        "description": "B10 Hydro Pumped Storage CO2g/kWh",
+        "hide": 2,
         "name": "hydropump",
-        "options": [
-          {
-            "selected": true,
-            "text": "23",
-            "value": "23"
-          }
-        ],
         "query": "23",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "23",
-          "value": "23"
-        },
-        "hide": 0,
-        "label": "B11 Hydro Run River CO2g/kWh",
+        "description": "B11 Hydro Run River CO2g/kWh",
+        "hide": 2,
         "name": "hydroriver",
-        "options": [
-          {
-            "selected": true,
-            "text": "23",
-            "value": "23"
-          }
-        ],
         "query": "23",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "23",
-          "value": "23"
-        },
-        "hide": 0,
-        "label": "B12 Hydro Water Reservoir CO2g/kWh",
+        "description": "B12 Hydro Water Reservoir CO2g/kWh",
+        "hide": 2,
         "name": "hydrores",
-        "options": [
-          {
-            "selected": true,
-            "text": "23",
-            "value": "23"
-          }
-        ],
         "query": "23",
         "skipUrlSync": false,
-        "type": "textbox"
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "CaaS Carbon Dashboard",
   "uid": "NhnWODJ4zIBM",
-  "version": 4,
+  "version": 16,
   "weekStart": ""
 }
