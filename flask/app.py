@@ -268,8 +268,8 @@ def metrics():
     counter += "entsoe_factor_b19 " + str(fac_b19) + "\n"
     
     #######################################
-    #json_data = json.dumps(data_dict)
-    #print(json_data,file=open('data.json','w'))
+    json_data = json.dumps(data_dict)
+    print(json_data,file=open('data.json','w'))
 
     return counter, 200, {'Content-Type': 'text/plain'}
 
@@ -278,15 +278,15 @@ def not_found_error(error):
     message = "Couldn't found your requested page"
     return message, 404, {'Content-Type': 'text/plain'}
 
-@app.errorhandler(500)
-def internal_error(error):
-    message = "Something went wrong"
-    return message, 500, {'Content-Type': 'text/plain'}
+#@app.errorhandler(500)
+#def internal_error(error):
+#    message = "Something went wrong"
+#    return message, 500, {'Content-Type': 'text/plain'}
 
 if __name__ == '__main__':
 
   app.run(
     host = "0.0.0.0",
     port = 9091,
-    debug = 0
+    debug = 1
   )
