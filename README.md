@@ -108,6 +108,7 @@ Ref: CO2 emissions factor:
 - https://impactful.ninja/the-carbon-footprint-of-biomass-energy/
 - https://www.hydropower.org/blog/carbon-emissions-from-hydropower-reservoirs-facts-and-myths
 - https://www.rte-france.com/en/eco2mix/co2-emissions
+- https://www.geothermal-energy.org/pdf/IGAstandard/WGC/2010/0209.pdf
 
 ## Credits
 
