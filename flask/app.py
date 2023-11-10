@@ -176,7 +176,7 @@ def metrics():
     #######################################
     # CO2 gramm/watt
     #######################################
-    result_co2 = ((int(result_b02) * fac_b02) + (int(result_b04) * fac_b04) + (int(result_b05)) * fac_b05) + ((int(result_b01) * fac_b01) + (int(result_b09) * fac_b09) + (int(result_b10) * fac_b10) + (int(result_b11) * fac_b11) + (int(result_b12) * fac_b12) + (int(result_b16) * fac_b16) + (int(result_b17) * fac_b17) + (int(result_b18) * fac_b18)  + (int(result_b19) * fac_b19)) / 1000 / 3600
+    result_co2 = ((int(result_b02) * fac_b02) + (int(result_b04) * fac_b04) + (int(result_b05)) * fac_b05) + ((int(result_b01) * fac_b01) + (int(result_b09) * fac_b09) + (int(result_b10) * fac_b10) + (int(result_b11) * fac_b11) + (int(result_b12) * fac_b12) + (int(result_b16) * fac_b16) + (int(result_b17) * fac_b17) + (int(result_b18) * fac_b18)  + (int(result_b19) * fac_b19)) / 1000 / 3600 / int(result_sum)
     #######################################
     # Print Out Metrics
     #######################################
