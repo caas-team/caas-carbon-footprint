@@ -174,9 +174,9 @@ def metrics():
     #######################################
     result_fos = (int(result_b02) + int(result_b04) + int(result_b05)) / int(result_sum)
     #######################################
-    # CO2 gramm/watt
+    # CO2 gramm/watt second
     #######################################
-    result_co2 = ((int(result_b02) * fac_b02 / 1000 / 1000) + (int(result_b04) * fac_b04 / 1000 / 1000) + (int(result_b05) * fac_b05 / 1000 / 1000) + (int(result_b01) * fac_b01 / 1000 / 1000) + (int(result_b09) * fac_b09 / 1000 / 1000) + (int(result_b10) * fac_b10 / 1000 / 1000) + (int(result_b11) * fac_b11 / 1000 / 1000) + (int(result_b12) * fac_b12 / 1000 / 1000) + (int(result_b16) * fac_b16 / 1000 / 1000) + (int(result_b17) * fac_b17 / 1000 / 1000) + (int(result_b18) * fac_b18 / 1000 / 1000)  + (int(result_b19) * fac_b19 / 1000 / 1000)) / 3600 
+    result_co2 = ((int(result_b02) * (fac_b02 / 3600) / 1000 / 1000) + (int(result_b04) * (fac_b04 / 3600) / 1000 / 1000) + (int(result_b05) * (fac_b05 / 3600) / 1000 / 1000) + (int(result_b01) * (fac_b01 / 3600) / 1000 / 1000) + (int(result_b09) * (fac_b09/ 3600) / 1000 / 1000) + (int(result_b10) * (fac_b10 / 3600) / 1000 / 1000) + (int(result_b11) * (fac_b11 / 3600) / 1000 / 1000) + (int(result_b12) * (fac_b12 / 3600) / 1000 / 1000) + (int(result_b16) * (fac_b16 / 3600) / 1000 / 1000) + (int(result_b17) * (fac_b17 / 3600) / 1000 / 1000) + (int(result_b18) * (fac_b18 / 3600) / 1000 / 1000)  + (int(result_b19) * (fac_b19 / 3600) / 1000 / 1000))
     #######################################
     # Print Out Metrics
     #######################################
