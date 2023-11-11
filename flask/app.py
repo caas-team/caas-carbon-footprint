@@ -264,7 +264,7 @@ def metrics():
     counter += "# HELP entsoe_generation_fos Current generation of fossil energy summary rate" + "\n"
     counter += "# TYPE entsoe_generation_fos gauge" + "\n"
     counter += "entsoe_generation_fos " + str(result_fos) + "\n"
-    counter += "# HELP entsoe_generation_co2 Current generation of co2 per watt" + "\n"
+    counter += "# HELP entsoe_generation_co2 Current generation of co2 per watt per second" + "\n"
     counter += "# TYPE entsoe_generation_co2 gauge" + "\n"
     counter += "entsoe_generation_co2 " + str(result_co2) + "\n"
     
