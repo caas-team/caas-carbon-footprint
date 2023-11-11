@@ -11,7 +11,9 @@
         "target": {
           "limit": 100,
           "matchAny": false,
-          "tags": [],
+          "tags": [
+            "sustainable-computing"
+          ],
           "type": "dashboard"
         },
         "type": "dashboard"
@@ -42,7 +44,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -58,11 +60,177 @@
           },
           "mappings": []
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gas"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hard Coal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#010101",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Wind Onshore"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Wind Offshore"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Brown Coal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5c291b",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Waste"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ef3524",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Geothermal"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f4001d",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Biomass"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#b9d0b6",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hydro Water Res."
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hydro Run-of-river"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Nuclear"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#f8f17b",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
-        "w": 14,
+        "w": 12,
         "x": 0,
         "y": 1
       },
@@ -80,7 +248,7 @@
         "pieType": "pie",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -94,7 +262,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -112,7 +280,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -130,7 +298,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -148,7 +316,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -166,7 +334,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -184,7 +352,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -202,7 +370,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -220,7 +388,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -238,7 +406,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -256,7 +424,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -274,7 +442,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -292,7 +460,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -310,7 +478,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -360,10 +528,10 @@
       "gridPos": {
         "h": 6,
         "w": 7,
-        "x": 14,
+        "x": 12,
         "y": 1
       },
-      "id": 19,
+      "id": 20,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -371,14 +539,14 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -386,17 +554,14 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg(entsoe_generation_fos)",
+          "expr": "avg(entsoe_generation_eco)*100",
           "hide": false,
-          "instant": false,
-          "legendFormat": "Engergy Index FOS",
+          "legendFormat": "Engergy Index ECO %",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Energy Index FOS",
-      "transformations": [],
+      "title": "Energy ECO %",
       "type": "stat"
     },
     {
@@ -415,16 +580,44 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "#5e5c5e",
                 "value": null
               },
               {
-                "color": "yellow",
+                "color": "light-red",
+                "value": 0.1
+              },
+              {
+                "color": "dark-orange",
                 "value": 0.2
               },
               {
-                "color": "green",
+                "color": "orange",
+                "value": 0.3
+              },
+              {
+                "color": "super-light-orange",
+                "value": 0.4
+              },
+              {
+                "color": "#EAB839",
                 "value": 0.5
+              },
+              {
+                "color": "light-yellow",
+                "value": 0.6
+              },
+              {
+                "color": "super-light-green",
+                "value": 0.7
+              },
+              {
+                "color": "green",
+                "value": 0.8
+              },
+              {
+                "color": "dark-green",
+                "value": 0.9
               }
             ]
           }
@@ -432,27 +625,28 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 7,
-        "x": 14,
-        "y": 7
+        "h": 12,
+        "w": 4,
+        "x": 19,
+        "y": 1
       },
-      "id": 20,
+      "id": 25,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -460,21 +654,22 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(entsoe_generation_bio)",
+          "expr": "avg(entsoe_generation_eco)",
           "hide": false,
-          "legendFormat": "Engergy Index ECO",
+          "legendFormat": "Engergy Index ECO %",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Energy Index ECO",
-      "type": "stat"
+      "title": "Energy Ampel",
+      "type": "bargauge"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Using data from https://transparency.entsoe.eu/",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -482,15 +677,11 @@
           },
           "mappings": [],
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 60
               },
               {
                 "color": "red",
@@ -503,25 +694,26 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 19,
-        "x": 2,
-        "y": 13
+        "w": 7,
+        "x": 12,
+        "y": 7
       },
-      "id": 18,
+      "id": 27,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
+        "textMode": "auto"
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -529,148 +721,128 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "entsoe_generation_b02",
+          "expr": "avg(entsoe_generation_fos)*100",
           "hide": false,
-          "legendFormat": "Brown coal",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b04",
-          "hide": false,
-          "legendFormat": "Gas",
+          "legendFormat": "Engergy Index ECO %",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b05",
-          "hide": false,
-          "legendFormat": "Hard coal",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b09",
-          "hide": false,
-          "legendFormat": "Geothermal",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b10",
-          "hide": false,
-          "legendFormat": "Hydro Pump Storage",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b11",
-          "hide": false,
-          "legendFormat": "Hydro Run-of-river",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b12",
-          "hide": false,
-          "legendFormat": "Hydro Water Res.",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b14",
-          "hide": false,
-          "legendFormat": "Nuclear",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b16",
-          "hide": false,
-          "legendFormat": "Solar",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b17",
-          "hide": false,
-          "legendFormat": "Waste",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b18",
-          "hide": false,
-          "legendFormat": "Wind Offshore",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b19",
-          "hide": false,
-          "legendFormat": "Wind Onshore",
-          "range": true,
-          "refId": "L"
         }
       ],
-      "title": "Energy Generation Index Germany (Detail in MW)",
-      "transparent": true,
-      "type": "gauge"
+      "title": "Energy FOS %",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Using data from https://transparency.entsoe.eu/",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CO2 emmission"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 23,
+        "x": 0,
+        "y": 13
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg(entsoe_generation_co2)",
+          "hide": false,
+          "legendFormat": "CO2 emmission",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CO2g/w",
+      "transformations": [],
+      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -679,7 +851,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 21
       },
       "id": 8,
       "panels": [],
@@ -712,6 +884,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -810,7 +983,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 22
       },
       "id": 16,
       "options": {
@@ -893,6 +1066,200 @@
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
+            "axisLabel": "CO2g/h",
+            "axisPlacement": "left",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 44,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 0,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*DRAM.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*OTHER.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*GPU.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*PKG.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": "prometheus",
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*(entsoe_generation_co2*3600))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / PKG",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": "prometheus",
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / DRAM",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / OTHER",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
+          "hide": false,
+          "legendFormat": "{{pod_name}} / {{container_namespace}} / GPU",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Pod/Process CO2 FOS Emission (C02g/h) in Namespace: $namespace",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "watt",
             "axisPlacement": "left",
             "barAlignment": 0,
@@ -905,6 +1272,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -1003,7 +1371,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 42
       },
       "id": 2,
       "options": {
@@ -1102,6 +1470,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 0,
             "pointSize": 5,
@@ -1200,7 +1569,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 42
       },
       "id": 17,
       "options": {
@@ -1306,7 +1675,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 50
       },
       "id": 15,
       "options": {
@@ -1324,7 +1693,7 @@
         "showUnfilled": true,
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.1",
+      "pluginVersion": "10.1.4",
       "targets": [
         {
           "datasource": {
@@ -1346,14 +1715,16 @@
   "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sustainable-computing"
+  ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
           "text": "Prometheus",
-          "value": "Prometheus"
+          "value": "PBFA97CFB590B2093"
         },
         "hide": 0,
         "includeAll": false,
@@ -1438,17 +1809,129 @@
         "query": "0.000000277777777777778",
         "skipUrlSync": false,
         "type": "constant"
+      },
+      {
+        "description": "FOS CO2g/kWh",
+        "hide": 2,
+        "name": "fosfactor",
+        "query": "751",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "ECO CO2g/kWh",
+        "hide": 2,
+        "name": "ecofactor",
+        "query": "117",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B01 Biomass CO2g/kWh",
+        "hide": 2,
+        "name": "biomass",
+        "query": "230",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B02 Brown Coal CO2g/kWh",
+        "hide": 2,
+        "name": "browncoal",
+        "query": "996",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B05 Hard Coal CO2g/kWh",
+        "hide": 2,
+        "name": "hardcoal",
+        "query": "880",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B04 Gas CO2g/kWh",
+        "hide": 2,
+        "name": "gas",
+        "query": "378",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B14 Nuclear CO2g/kWh",
+        "hide": 2,
+        "name": "nuclear",
+        "query": "39",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B19 Wind Onshore CO2g/kWh",
+        "hide": 2,
+        "name": "windonshore",
+        "query": "9",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B18 Wind Offhore CO2g/kWh",
+        "hide": 2,
+        "name": "windoffshore",
+        "query": "4",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B16 Solar CO2g/kWh",
+        "hide": 2,
+        "name": "solar",
+        "query": "26",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B17 Waste CO2g/kWh",
+        "hide": 2,
+        "name": "waste",
+        "query": "494",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B10 Hydro Pumped Storage CO2g/kWh",
+        "hide": 2,
+        "name": "hydropump",
+        "query": "23",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B11 Hydro Run River CO2g/kWh",
+        "hide": 2,
+        "name": "hydroriver",
+        "query": "23",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "description": "B12 Hydro Water Reservoir CO2g/kWh",
+        "hide": 2,
+        "name": "hydrores",
+        "query": "23",
+        "skipUrlSync": false,
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "CaaS Carbon Dashboard",
   "uid": "NhnWODJ4zIBM",
-  "version": 5,
+  "version": 26,
   "weekStart": ""
 }

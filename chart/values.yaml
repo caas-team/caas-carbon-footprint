@@ -21,10 +21,10 @@ kepler:
 entsoe:
   enabled: true
   # apply for token here: https://transparency.entsoe.eu/content/static_content/download?path=/Static%20content/API-Token-Management.pdf
-  #entsoe_api_key: 
+  #entsoe_api_key:
   image:
     repository: mtr.devops.telekom.de/caas/entsoe
-    tag: 0.0.4
+    tag: 0.0.5
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
@@ -57,10 +57,10 @@ entsoe:
   serviceMonitor:
     interval: 10m
   # hours back when entsoe metrics should collected
-  # note: unfortunately no real time data for Germany, must be at least one day back 
-  start: 25
-  end: 24
+  # note: sometimes no real time data for Germany, must be at least one day back 
+  start: 1
+  end: 0
 # install app in Rancher environment
 # this will user Rancher defined namespaces and labels
 rancher:
-  enabled:  true
+  enabled: true

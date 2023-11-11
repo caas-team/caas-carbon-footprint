@@ -146,21 +146,77 @@ def metrics():
     except:
         result_b19=0
     #######################################
+    # Factor CO2g/kWh
+    #######################################
+    fac_b01 = 230
+    fac_b02 = 996
+    fac_b05 = 880
+    fac_b04 = 378
+    fac_b09 = 91
+    fac_b14 = 39
+    fac_b19 = 9
+    fac_b18 = 4
+    fac_b16 = 26
+    fac_b17 = 494
+    fac_b10 = 23
+    fac_b11 = 23
+    fac_b12 = 23
+    #######################################
     # Summary Energy Generation
     #######################################
     result_sum = int(result_b01) + int(result_b02) + int(result_b04) + int(result_b05) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b14) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)
     #######################################
     # Bio efficience
     #######################################
-    result_bio = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
+    result_eco = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
     #######################################
     # Fossil part
     #######################################
     result_fos = (int(result_b02) + int(result_b04) + int(result_b05)) / int(result_sum)
     #######################################
+    # CO2 gramm/watt second
+    #######################################
+    result_co2 = ((int(result_b02) * (fac_b02 / 3600) / 1000 / 1000) + (int(result_b04) * (fac_b04 / 3600) / 1000 / 1000) + (int(result_b05) * (fac_b05 / 3600) / 1000 / 1000) + (int(result_b01) * (fac_b01 / 3600) / 1000 / 1000) + (int(result_b09) * (fac_b09/ 3600) / 1000 / 1000) + (int(result_b10) * (fac_b10 / 3600) / 1000 / 1000) + (int(result_b11) * (fac_b11 / 3600) / 1000 / 1000) + (int(result_b12) * (fac_b12 / 3600) / 1000 / 1000) + (int(result_b16) * (fac_b16 / 3600) / 1000 / 1000) + (int(result_b17) * (fac_b17 / 3600) / 1000 / 1000) + (int(result_b18) * (fac_b18 / 3600) / 1000 / 1000)  + (int(result_b19) * (fac_b19 / 3600) / 1000 / 1000))
+    #######################################
     # Print Out Metrics
     #######################################
-    counter = "# HELP entsoe_generation_b01 Current generation of energy with Biomass in MW" + "\n"
+    counter = "# HELP entsoe_factor_b01 Factor CO2g/kWh Biomass" + "\n"
+    counter += "# TYPE entsoe_factor_b01 gauge" + "\n"
+    counter += "entsoe_factor_b01 " + str(fac_b01) + "\n"
+    counter += "# HELP entsoe_factor_b02 Factor CO2g/kWh Brown Coal" + "\n"
+    counter += "# TYPE entsoe_factor_b02 gauge" + "\n"
+    counter += "entsoe_factor_b02 " + str(fac_b02) + "\n"
+    counter += "# HELP entsoe_factor_b04 Factor CO2g/kWh Gas" + "\n"
+    counter += "# TYPE entsoe_factor_b04 gauge" + "\n"
+    counter += "entsoe_factor_b04 " + str(fac_b04) + "\n"
+    counter += "# HELP entsoe_factor_b05 Factor CO2g/kWh Hard Coal" + "\n"
+    counter += "# TYPE entsoe_factor_b05 gauge" + "\n"
+    counter += "entsoe_factor_b05 " + str(fac_b05) + "\n"
+    counter += "# HELP entsoe_factor_b10 Factor CO2g/kWh Hydro Pumped Storage" + "\n"
+    counter += "# TYPE entsoe_factor_b10 gauge" + "\n"
+    counter += "entsoe_factor_b10 " + str(fac_b10) + "\n"
+    counter += "# HELP entsoe_factor_b11 Factor CO2g/kWh Hydro Run River" + "\n"
+    counter += "# TYPE entsoe_factor_b11 gauge" + "\n"
+    counter += "entsoe_factor_b11 " + str(fac_b11) + "\n"
+    counter += "# HELP entsoe_factor_b12 Factor CO2g/kWh Hydro Water Reservoir" + "\n"
+    counter += "# TYPE entsoe_factor_b12 gauge" + "\n"
+    counter += "entsoe_factor_b12 " + str(fac_b12) + "\n"
+    counter += "# HELP entsoe_factor_b14 Factor CO2g/kWh Nuclear" + "\n"
+    counter += "# TYPE entsoe_factor_b14 gauge" + "\n"
+    counter += "entsoe_factor_b14 " + str(fac_b14) + "\n"
+    counter += "# HELP entsoe_factor_b16 Factor CO2g/kWh Solar" + "\n"
+    counter += "# TYPE entsoe_factor_b16 gauge" + "\n"
+    counter += "entsoe_factor_b16 " + str(fac_b16) + "\n"
+    counter += "# HELP entsoe_factor_b17 Factor CO2g/kWh Waste" + "\n"
+    counter += "# TYPE entsoe_factor_b17 gauge" + "\n"
+    counter += "entsoe_factor_b17 " + str(fac_b17) + "\n"
+    counter += "# HELP entsoe_factor_b18 Factor CO2g/kWh Wind Offshore" + "\n"
+    counter += "# TYPE entsoe_factor_b18 gauge" + "\n"
+    counter += "entsoe_factor_b18 " + str(fac_b18) + "\n"
+    counter += "# HELP entsoe_factor_b19 Factor CO2g/kWh Wind Onshore" + "\n"
+    counter += "# TYPE entsoe_factor_b19 gauge" + "\n"
+    counter += "entsoe_factor_b19 " + str(fac_b19) + "\n"
+    counter += "# HELP entsoe_generation_b01 Current generation of energy with Biomass in MW" + "\n"
     counter += "# TYPE entsoe_generation_b01 gauge" + "\n"
     counter += "entsoe_generation_b01 " + str(result_b01) + "\n"
     counter += "# HELP entsoe_generation_b02 Current generation of energy with Fossil Brown coal/Lignite in MW" + "\n"
@@ -202,13 +258,17 @@ def metrics():
     counter += "# HELP entsoe_generation_sum Current generation of energy summary in MW" + "\n"
     counter += "# TYPE entsoe_generation_sum gauge" + "\n"
     counter += "entsoe_generation_sum " + str(result_sum) + "\n"
-    counter += "# HELP entsoe_generation_bio Current generation of bio energy summary rate" + "\n"
-    counter += "# TYPE entsoe_generation_bio gauge" + "\n"
-    counter += "entsoe_generation_bio " + str(result_bio) + "\n"
+    counter += "# HELP entsoe_generation_eco Current generation of eco energy summary rate" + "\n"
+    counter += "# TYPE entsoe_generation_eco gauge" + "\n"
+    counter += "entsoe_generation_eco " + str(result_eco) + "\n"
     counter += "# HELP entsoe_generation_fos Current generation of fossil energy summary rate" + "\n"
     counter += "# TYPE entsoe_generation_fos gauge" + "\n"
     counter += "entsoe_generation_fos " + str(result_fos) + "\n"
+    counter += "# HELP entsoe_generation_co2 Current generation of co2 per watt per second" + "\n"
+    counter += "# TYPE entsoe_generation_co2 gauge" + "\n"
+    counter += "entsoe_generation_co2 " + str(result_co2) + "\n"
     
+    #######################################
     #json_data = json.dumps(data_dict)
     #print(json_data,file=open('data.json','w'))
 
