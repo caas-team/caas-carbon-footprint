@@ -11,7 +11,9 @@
         "target": {
           "limit": 100,
           "matchAny": false,
-          "tags": [],
+          "tags": [
+            "sustainable-computing"
+          ],
           "type": "dashboard"
         },
         "type": "dashboard"
@@ -228,7 +230,7 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 14,
+        "w": 12,
         "x": 0,
         "y": 1
       },
@@ -511,78 +513,6 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.6
-              },
-              {
-                "color": "red",
-                "value": 0.8
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 7,
-        "x": 14,
-        "y": 1
-      },
-      "id": 19,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "/^Engergy Index FOS$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg(entsoe_generation_fos)",
-          "hide": false,
-          "legendFormat": "Engergy Index FOS",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Energy Index FOS",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "Using data from https://transparency.entsoe.eu/",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
                 "color": "green",
                 "value": null
               },
@@ -598,8 +528,8 @@
       "gridPos": {
         "h": 6,
         "w": 7,
-        "x": 14,
-        "y": 7
+        "x": 12,
+        "y": 1
       },
       "id": 20,
       "options": {
@@ -624,15 +554,115 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(entsoe_generation_bio)",
+          "expr": "avg(entsoe_generation_eco)*100",
           "hide": false,
-          "legendFormat": "Engergy Index ECO",
+          "legendFormat": "Engergy Index ECO %",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Energy Index ECO",
+      "title": "Energy ECO %",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Using data from https://transparency.entsoe.eu/",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#5e5c5e",
+                "value": null
+              },
+              {
+                "color": "light-red",
+                "value": 0.1
+              },
+              {
+                "color": "dark-orange",
+                "value": 0.2
+              },
+              {
+                "color": "orange",
+                "value": 0.3
+              },
+              {
+                "color": "super-light-orange",
+                "value": 0.4
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.5
+              },
+              {
+                "color": "light-yellow",
+                "value": 0.6
+              },
+              {
+                "color": "super-light-green",
+                "value": 0.7
+              },
+              {
+                "color": "green",
+                "value": 0.8
+              },
+              {
+                "color": "dark-green",
+                "value": 0.9
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 4,
+        "x": 19,
+        "y": 1
+      },
+      "id": 25,
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "avg(entsoe_generation_eco)",
+          "hide": false,
+          "legendFormat": "Engergy Index ECO %",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Energy Ampel",
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -652,70 +682,10 @@
               {
                 "color": "blue",
                 "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 7,
-        "x": 0,
-        "y": 13
-      },
-      "id": 21,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "/^Engergy Index FOS$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "avg(entsoe_generation_fos)*$fosfactor",
-          "hide": false,
-          "legendFormat": "Engergy Index FOS",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "CO2g/kwh FOS",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "Using data from https://transparency.entsoe.eu/",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
+              },
               {
-                "color": "blue",
-                "value": null
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -725,10 +695,10 @@
       "gridPos": {
         "h": 6,
         "w": 7,
-        "x": 7,
-        "y": 13
+        "x": 12,
+        "y": 7
       },
-      "id": 23,
+      "id": 27,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -738,7 +708,7 @@
           "calcs": [
             "mean"
           ],
-          "fields": "/^Engergy Index FOS$/",
+          "fields": "",
           "values": false
         },
         "textMode": "auto"
@@ -751,15 +721,14 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(entsoe_generation_bio)*$ecofactor",
+          "expr": "avg(entsoe_generation_fos)*100",
           "hide": false,
-          "legendFormat": "Engergy Index FOS",
+          "legendFormat": "Engergy Index ECO %",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "CO2g/kwh ECO",
-      "transformations": [],
+      "title": "Energy FOS %",
       "type": "stat"
     },
     {
@@ -841,9 +810,9 @@
         "h": 8,
         "w": 23,
         "x": 0,
-        "y": 19
+        "y": 13
       },
-      "id": 24,
+      "id": 26,
       "options": {
         "legend": {
           "calcs": [],
@@ -864,7 +833,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(entsoe_generation_b02)*$browncoal/1000/1000+avg(entsoe_generation_b05)*$hardcoal/1000/1000+avg(entsoe_generation_b04)*$gas/1000/1000+avg(entsoe_generation_b19)*$windonshore/1000/1000+avg(entsoe_generation_b18)*$windoffshore/1000/1000+avg(entsoe_generation_b16)*$solar/1000/1000+avg(entsoe_generation_b17)*$waste/1000/1000+avg(entsoe_generation_b10)*$hydropump/1000/1000+avg(entsoe_generation_b11)*$hydroriver/1000/1000+avg(entsoe_generation_b12)*$hydrores/1000/1000",
+          "expr": "avg(entsoe_generation_co2)",
           "hide": false,
           "legendFormat": "CO2 emmission",
           "range": true,
@@ -876,215 +845,13 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 60
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 19,
-        "x": 2,
-        "y": 27
-      },
-      "id": 18,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "10.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b02",
-          "hide": false,
-          "legendFormat": "Brown coal",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b04",
-          "hide": false,
-          "legendFormat": "Gas",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b05",
-          "hide": false,
-          "legendFormat": "Hard coal",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b09",
-          "hide": false,
-          "legendFormat": "Geothermal",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b10",
-          "hide": false,
-          "legendFormat": "Hydro Pump Storage",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b11",
-          "hide": false,
-          "legendFormat": "Hydro Run-of-river",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b12",
-          "hide": false,
-          "legendFormat": "Hydro Water Res.",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b14",
-          "hide": false,
-          "legendFormat": "Nuclear",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b16",
-          "hide": false,
-          "legendFormat": "Solar",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b17",
-          "hide": false,
-          "legendFormat": "Waste",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b18",
-          "hide": false,
-          "legendFormat": "Wind Offshore",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "expr": "entsoe_generation_b19",
-          "hide": false,
-          "legendFormat": "Wind Onshore",
-          "range": true,
-          "refId": "L"
-        }
-      ],
-      "title": "Energy Generation Index Germany (Detail in MW)",
-      "transparent": true,
-      "type": "gauge"
-    },
-    {
       "collapsed": false,
       "datasource": "prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 21
       },
       "id": 8,
       "panels": [],
@@ -1216,7 +983,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 22
       },
       "id": 16,
       "options": {
@@ -1333,7 +1100,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1409,13 +1177,13 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 32
       },
       "id": 22,
       "options": {
         "legend": {
           "calcs": [
-            "mean"
+            "last"
           ],
           "displayMode": "table",
           "placement": "right",
@@ -1432,7 +1200,7 @@
         {
           "datasource": "prometheus",
           "editorMode": "code",
-          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*($fosfactor/1000)*($ecofactor/1000))",
+          "expr": "sum by (pod_name, container_namespace) (irate(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[1m])*(entsoe_generation_co2*3600))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{pod_name}} / {{container_namespace}} / PKG",
@@ -1526,7 +1294,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1602,7 +1371,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 54
+        "y": 42
       },
       "id": 2,
       "options": {
@@ -1723,7 +1492,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1799,7 +1569,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 54
+        "y": 42
       },
       "id": 17,
       "options": {
@@ -1889,7 +1659,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1904,7 +1675,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 50
       },
       "id": 15,
       "options": {
@@ -1944,7 +1715,9 @@
   "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "sustainable-computing"
+  ],
   "templating": {
     "list": [
       {
@@ -2152,13 +1925,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "CaaS Carbon Dashboard",
   "uid": "NhnWODJ4zIBM",
-  "version": 18,
+  "version": 26,
   "weekStart": ""
 }
