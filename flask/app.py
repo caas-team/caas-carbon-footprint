@@ -168,7 +168,7 @@ def metrics():
     #######################################
     # Bio efficience
     #######################################
-    result_bio = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
+    result_eco = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
     #######################################
     # Fossil part
     #######################################
@@ -258,9 +258,9 @@ def metrics():
     counter += "# HELP entsoe_generation_sum Current generation of energy summary in MW" + "\n"
     counter += "# TYPE entsoe_generation_sum gauge" + "\n"
     counter += "entsoe_generation_sum " + str(result_sum) + "\n"
-    counter += "# HELP entsoe_generation_bio Current generation of bio energy summary rate" + "\n"
-    counter += "# TYPE entsoe_generation_bio gauge" + "\n"
-    counter += "entsoe_generation_bio " + str(result_bio) + "\n"
+    counter += "# HELP entsoe_generation_eco Current generation of eco energy summary rate" + "\n"
+    counter += "# TYPE entsoe_generation_eco gauge" + "\n"
+    counter += "entsoe_generation_eco " + str(result_eco) + "\n"
     counter += "# HELP entsoe_generation_fos Current generation of fossil energy summary rate" + "\n"
     counter += "# TYPE entsoe_generation_fos gauge" + "\n"
     counter += "entsoe_generation_fos " + str(result_fos) + "\n"
