@@ -52,63 +52,114 @@ There is a [Python Package](https://github.com/EnergieID/entsoe-py) available to
 example output with current metrics:
 
 ```
+# HELP entsoe_factor_b01 Factor CO2g/kWh Biomass
+# TYPE entsoe_factor_b01 gauge
+entsoe_factor_b01 230
+# HELP entsoe_factor_b02 Factor CO2g/kWh Brown Coal
+# TYPE entsoe_factor_b02 gauge
+entsoe_factor_b02 996
+# HELP entsoe_factor_b04 Factor CO2g/kWh Gas
+# TYPE entsoe_factor_b04 gauge
+entsoe_factor_b04 378
+# HELP entsoe_factor_b05 Factor CO2g/kWh Hard Coal
+# TYPE entsoe_factor_b05 gauge
+entsoe_factor_b05 880
+# HELP entsoe_factor_b10 Factor CO2g/kWh Hydro Pumped Storage
+# TYPE entsoe_factor_b10 gauge
+entsoe_factor_b10 23
+# HELP entsoe_factor_b11 Factor CO2g/kWh Hydro Run River
+# TYPE entsoe_factor_b11 gauge
+entsoe_factor_b11 23
+# HELP entsoe_factor_b12 Factor CO2g/kWh Hydro Water Reservoir
+# TYPE entsoe_factor_b12 gauge
+entsoe_factor_b12 23
+# HELP entsoe_factor_b14 Factor CO2g/kWh Nuclear
+# TYPE entsoe_factor_b14 gauge
+entsoe_factor_b14 39
+# HELP entsoe_factor_b16 Factor CO2g/kWh Solar
+# TYPE entsoe_factor_b16 gauge
+entsoe_factor_b16 26
+# HELP entsoe_factor_b17 Factor CO2g/kWh Waste
+# TYPE entsoe_factor_b17 gauge
+entsoe_factor_b17 494
+# HELP entsoe_factor_b18 Factor CO2g/kWh Wind Offshore
+# TYPE entsoe_factor_b18 gauge
+entsoe_factor_b18 4
+# HELP entsoe_factor_b19 Factor CO2g/kWh Wind Onshore
+# TYPE entsoe_factor_b19 gauge
+entsoe_factor_b19 9
 # HELP entsoe_generation_b01 Current generation of energy with Biomass in MW
 # TYPE entsoe_generation_b01 gauge
-entsoe_generation_b01 4371
+entsoe_generation_b01 4515
 # HELP entsoe_generation_b02 Current generation of energy with Fossil Brown coal/Lignite in MW
 # TYPE entsoe_generation_b02 gauge
-entsoe_generation_b02 5135
+entsoe_generation_b02 13202
 # HELP entsoe_generation_b04 Current generation of energy with Fossil Gas in MW
 # TYPE entsoe_generation_b04 gauge
-entsoe_generation_b04 3441
+entsoe_generation_b04 7422
 # HELP entsoe_generation_b05 Current generation of energy with Fossil Hard coal in MW
 # TYPE entsoe_generation_b05 gauge
-entsoe_generation_b05 1752
+entsoe_generation_b05 4485
 # HELP entsoe_generation_b09 Current generation of energy with Geothermal in MW
 # TYPE entsoe_generation_b09 gauge
 entsoe_generation_b09 21
 # HELP entsoe_generation_b10 Current generation of energy with Hydro Pumped Storage in MW
 # TYPE entsoe_generation_b10 gauge
-entsoe_generation_b10 1044
+entsoe_generation_b10 5509
 # HELP entsoe_generation_b11 Current generation of energy with Hydro Run-of-river and poundage in MW
 # TYPE entsoe_generation_b11 gauge
-entsoe_generation_b11 1749
+entsoe_generation_b11 1420
 # HELP entsoe_generation_b12 Current generation of energy with Hydro Water Reservoir in MW
 # TYPE entsoe_generation_b12 gauge
-entsoe_generation_b12 219
+entsoe_generation_b12 94
 # HELP entsoe_generation_b14 Current generation of energy with Nuclear in MW
 # TYPE entsoe_generation_b14 gauge
 entsoe_generation_b14 0
 # HELP entsoe_generation_b16 Current generation of energy with Solar in MW
 # TYPE entsoe_generation_b16 gauge
-entsoe_generation_b16 8852
+entsoe_generation_b16 0
 # HELP entsoe_generation_b17 Current generation of energy with Waste in MW
 # TYPE entsoe_generation_b17 gauge
-entsoe_generation_b17 853
+entsoe_generation_b17 814
 # HELP entsoe_generation_b18 Current generation of energy with Wind Offshore in MW
 # TYPE entsoe_generation_b18 gauge
-entsoe_generation_b18 3522
+entsoe_generation_b18 1371
 # HELP entsoe_generation_b19 Current generation of energy with Wind Onshore in MW
 # TYPE entsoe_generation_b19 gauge
-entsoe_generation_b19 13107
+entsoe_generation_b19 5208
 # HELP entsoe_generation_sum Current generation of energy summary in MW
 # TYPE entsoe_generation_sum gauge
-entsoe_generation_sum 44066
-# HELP entsoe_generation_bio Current generation of bio energy summary rate
-# TYPE entsoe_generation_bio gauge
-entsoe_generation_bio 0.7656242908364725
+entsoe_generation_sum 44061
+# HELP entsoe_generation_eco Current generation of eco energy summary rate
+# TYPE entsoe_generation_eco gauge
+entsoe_generation_eco 0.4301309548126461
 # HELP entsoe_generation_fos Current generation of fossil energy summary rate
 # TYPE entsoe_generation_fos gauge
-entsoe_generation_fos 0.23437570916352743
+entsoe_generation_fos 0.5698690451873539
+# HELP entsoe_generation_co2 Current generation of co2 per watt per second
+# TYPE entsoe_generation_co2 gauge
+entsoe_generation_co2 0.00598829722222222
 ```
 
-Ref: CO2 emissions factor:
+<img src="images/energymix.png">
+
+## Helm Chart
+
+The [Helm Chart](./chart) caas-carbon-footprint puts all together. Beware there are options to install in Rancher environment. If not, you have to disable it. And you need an Entsoe API key (see description)
+
+## Reference
+
+CO2 emissions factor:
 
 - https://iinas.org/app/uploads/2023/10/IINAS_2023_KEV_THG_Strom-2022_2030-2050.pdf
 - https://impactful.ninja/the-carbon-footprint-of-biomass-energy/
 - https://www.hydropower.org/blog/carbon-emissions-from-hydropower-reservoirs-facts-and-myths
 - https://www.rte-france.com/en/eco2mix/co2-emissions
 - https://www.geothermal-energy.org/pdf/IGAstandard/WGC/2010/0209.pdf
+
+## Use Cases
+
+In [Example folder](./examples) are use cases and ideas.
 
 ## Credits
 
