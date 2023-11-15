@@ -15,6 +15,12 @@ spec:
     path: /metrics
     port: http
     scheme: http
+    relabelings:
+    - action: replace
+      replacement: caasglobal
+      sourceLabels:
+      - container
+      targetLabel: namespace
   jobLabel: app.kubernetes.io/name
   selector:
     matchLabels:
