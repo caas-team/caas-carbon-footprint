@@ -3,7 +3,7 @@ annotations:
   catalog.cattle.io/display-name: CaaS Carbon Footprint
 name: caas-carbon-footprint
 description: A Helm chart for carbon footprint measurement
-version: "0.0.7"
+version: "0.0.8"
 appVersion: "0.0.7"
 keywords:
   - monitoring

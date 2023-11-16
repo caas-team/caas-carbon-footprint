@@ -6,7 +6,7 @@ metadata:
   name: entsoe-{{ include "caas-carbon-footprint.fullname" . }}
   labels:
     app.kubernetes.io/component: entsoe
-    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}-entso
+    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}
 spec:
   selector:
     {{- include "caas-carbon-footprint.selectorLabels" . | nindent 4 }}
