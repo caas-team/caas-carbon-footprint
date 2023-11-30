@@ -26,8 +26,7 @@ spec:
         command:
         - stress
         name: demoapp
-        image: polinux/stress:latest
-        #image: mtr.devops.telekom.de/caas/stress:latest
+        image: mtr.devops.telekom.de/caas/stress:latest
         resources:
           requests:
             cpu: 1000m
