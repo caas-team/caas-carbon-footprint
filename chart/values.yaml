@@ -64,3 +64,4 @@ entsoe:
 # this will user Rancher defined namespaces and labels
 rancher:
   enabled: true
+  cattleDashboards: false
