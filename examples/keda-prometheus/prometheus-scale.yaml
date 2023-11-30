@@ -1,0 +1,34 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: carbon-keda-scaledobject
+spec:
+  scaleTargetRef:
+    apiVersion:    apps/v1
+    kind:          Deployment
+    name:          demoapp
+  pollingInterval:  10                               # Optional. Default: 30 seconds
+  cooldownPeriod:   300                              # Optional. Default: 300 seconds
+  minReplicaCount:  1                                # Optional. Default: 0
+  maxReplicaCount:  4                                # Optional. Default: 100
+  fallback:                                          # Optional. Section to specify fallback options
+    failureThreshold: 3                              # Mandatory if fallback section is included
+    replicas: 1
+  advanced: # Optional. Section to specify advanced options
+    horizontalPodAutoscalerConfig: # Optional. Section to specify HPA related options
+      behavior: # Optional. Use to modify HPA's scaling behavior
+        scaleDown:
+          stabilizationWindowSeconds: 150
+          policies:
+            - type: Percent
+              value: 100
+              periodSeconds: 15
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://carbon-prometheus-server.carbon
+        metricName: entsoe_generation_eco
+        query: entsoe_generation_eco{job="entsoe-carbon-footprint"}*100
+        threshold: '65'
+
+

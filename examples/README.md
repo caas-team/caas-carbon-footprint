@@ -46,3 +46,9 @@ Patch deployment and adjust cpu resources based on eco power generation
 see [./hpa/](hpa)
 
 Patch hpa and adjust replicas based on eco power generation
+
+## Keda Prometheus
+
+see [./keda-prometheus/](keda-prometheus)
+
+Use ScaledObject from [https://keda.io](Keda) to fetch Prometheus metrics of carbon emission and act on workload deployment
