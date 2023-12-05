@@ -1,0 +1,130 @@
+# This cronjob queries an existing Prometheus for `entsoe_generation_co2`
+# and makes decission how many resourcequotas are allowed for the workload in the running namespace.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: carbon-cronjob
+  name: carbon-cronjob
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    app: carbon-cronjob
+  name: carbon-cronjob
+rules:
+- apiGroups:
+  - "autoscaling"
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: carbon-cronjob
+  name: carbon-cronjob
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: carbon-cronjob
+subjects:
+  - kind: ServiceAccount
+    name: carbon-cronjob
+---
+apiVersion: v1
+data:
+  run.sh: |
+    #!/bin/bash
+    # set 3 carbon emission limits to operate resource quotas
+    highlimit=80
+    middlelimit=50
+    smalllimit=40
+    quota=10
+    # get the current carbon emission from entsoe
+    carbon=$(curl -s http://carbon-prometheus-server:80/api/v1/query?query=entsoe_generation_eco | jq -r '.data.result[]|select(.metric.job=="entsoe-carbon-footprint")|.value[-1]')
+    if  [ "${#carbon}" -lt 1 ]; then
+      echo "no carbon emission data at this time"
+      exit
+    fi
+    # unit is g/s, multiplicate and round because bash can't handle floating numbers
+    carbon=$(printf "%.0f\n" $( bc -l <<<"100*$carbon" ))
+    echo "carbon factor is  "$carbon" , operate the deployment now"
+    # set the cpu resource limit based on the current carbon emission factor
+    if [[ $carbon -gt $highlimit ]]; then
+      kubectl patch hpa demoapp --patch '{"spec":{"maxReplicas":4}}'
+    elif [[ $carbon -gt $middlelimit ]] && [[ $carbon -lt $highlimit ]]; then
+      kubectl patch hpa demoapp --patch '{"spec":{"maxReplicas":3}}'
+    elif [[ $carbon -lt $middlelimit ]] && [[ $carbon -gt $smalllimit ]]; then
+      kubectl patch hpa demoapp --patch '{"spec":{"maxReplicas":2}}'
+    elif [[ $carbon -lt $smalllimit ]] && [[ $carbon -gt 0 ]]; then
+      kubectl patch hpa demoapp --patch '{"spec":{"maxReplicas":1}}'
+    fi
+
+kind: ConfigMap
+metadata:
+  labels:
+    app: carbon-cronjob
+  name: carbon-cronjob
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    job-name: carbon-cronjob
+  name: carbon-cronjob
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  suspend: false
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - image: mtr.devops.telekom.de/caas/k8s-tools:latest
+            imagePullPolicy: Always
+            name: carbon-cronjob
+            command: ["sh","-c"]
+            args: ["/sidecar/run.sh"]
+            resources:
+              limits:
+                cpu: 400m
+                memory: 512Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              privileged: false
+              readOnlyRootFilesystem: true
+              runAsUser: 1000
+              runAsGroup: 1000
+            volumeMounts:
+            - name: carbon-cronjob
+              mountPath: /sidecar
+          securityContext:
+            fsGroup: 1000
+            supplementalGroups:
+            - 1000
+          serviceAccountName: carbon-cronjob
+          volumes:
+          - name: carbon-cronjob
+            configMap:
+              defaultMode: 0755
+              name: carbon-cronjob

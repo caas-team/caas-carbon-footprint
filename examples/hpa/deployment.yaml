@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+spec:
+  selector:
+    matchLabels:
+      app: demoapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demoapp
+    spec:
+      containers:
+      - args:
+        - --vm
+        - "1"
+        - --vm-bytes
+        - 256M
+        - -c
+        - "2"
+        - --vm-hang
+        - "1"
+        command:
+        - stress
+        name: demoapp
+        image: mtr.devops.telekom.de/caas/stress:latest
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsUser: 1000
+          runAsGroup: 1000
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 1000
+        supplementalGroups:
+        - 1000
+      terminationGracePeriodSeconds: 1
