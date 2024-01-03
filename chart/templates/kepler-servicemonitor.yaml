@@ -16,6 +16,10 @@ spec:
       sourceLabels:
       - container_namespace
       targetLabel: namespace
+    - action: keep
+      regex: kepler_container_(package|dram|other|gpu).+
+      sourceLabels:
+      - __name__
     port: http
     relabelings:
     - action: replace
@@ -24,6 +28,10 @@ spec:
       sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: instance
+    - action: keep
+      regex: kepler_container_(package|dram|other|gpu).+
+      sourceLabels:
+      - __name__
     scheme: http
   jobLabel: app.kubernetes.io/name
   selector:
