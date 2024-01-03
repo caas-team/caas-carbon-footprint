@@ -18,9 +18,9 @@ spec:
         - --vm
         - "1"
         - --vm-bytes
-        - 256M
+        - 128M
         - -c
-        - "2"
+        - "1"
         - --vm-hang
         - "1"
         command:
