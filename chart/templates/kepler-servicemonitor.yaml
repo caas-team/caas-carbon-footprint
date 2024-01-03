@@ -9,7 +9,7 @@ metadata:
   name: {{ include "caas-carbon-footprint.fullname" . }}-kepler
 spec:
   endpoints:
-  - interval: 30s
+  - interval: 60s
     metricRelabelings:
     - action: replace
       regex: (.*)
@@ -28,10 +28,11 @@ spec:
       sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: instance
-    - action: keep
-      regex: kepler_container_(package|dram|other|gpu).+
-      sourceLabels:
-      - __name__
+    # FIXME: the servicemonitor is not available
+    #- action: keep
+    #  regex: kepler_container_(package|dram|other|gpu).+
+    #  sourceLabels:
+    #  - __name__
     scheme: http
   jobLabel: app.kubernetes.io/name
   selector:
