@@ -54,6 +54,6 @@ jobs:
           tag: ghcr.io/caas-team/entsoe:latest
           tag: |
             ${{ steps.meta.outputs.tags }}
-          env:
-            COSIGN_KEY: ${{secrets.COSIGN_KEY}}
+        env:
+          COSIGN_KEY: ${{secrets.COSIGN_KEY}}
  
