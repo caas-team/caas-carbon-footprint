@@ -39,6 +39,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v5
+        id: build-push
         with:
           context: .
           platforms: linux/amd64,linux/arm64
@@ -47,17 +48,8 @@ jobs:
             mtr.devops.telekom.de/caas/entsoe:latest
             ghcr.io/caas-team/entsoe:latest
             ${{ steps.meta.outputs.tags }}
-  sign:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        tags: ${{ needs.build.steps.meta.outputs.tags }}
-    steps:
-      - uses: actions/checkout@v2
       - name: Sign Push
         run: |
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ matrix.tags }}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ steps.build-push.outputs.digest }}
         env:
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
