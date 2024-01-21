@@ -6,6 +6,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            mtr.devops.telekom.de/caas/entsoe
+            ghcr.io/caas-team/entsoe
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
       - name: Install Cosign
         uses: sigstore/cosign-installer@main
         with:
@@ -34,9 +44,8 @@ jobs:
           push: true
           tags: |
             mtr.devops.telekom.de/caas/entsoe:latest
-            mtr.devops.telekom.de/caas/entsoe:$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
             ghcr.io/caas-team/entsoe:latest
-            ghcr.io/caas-team/entsoe:$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+            ${{ steps.meta.outputs.tags }}
       - name: Sign Push
         run: |
           cosign sign --key env://COSIGN_KEY --tlog-upload=false mtr.devops.telekom.de/caas/entsoe:latest
@@ -44,6 +53,6 @@ jobs:
           cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/caas-team/entsoe:latest
           cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/caas-team/entsoe:${VERSION}
         env:
-          VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION: ${{ steps.meta.outputs.tags }}
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
  
