@@ -58,6 +58,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Sign Push
         run: |
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tags }}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ matrix.tags }}
         env:
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
