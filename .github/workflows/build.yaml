@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tags: ${{ needs.build.steps.meta.outputs.tags }}
+        tags: ${{ needs.build.steps.meta.tags }}
     steps:
       - uses: actions/checkout@v2
       - name: Sign Push
