@@ -47,12 +47,13 @@ jobs:
             ghcr.io/caas-team/entsoe:latest
             ${{ steps.meta.outputs.tags }}
       - name: Sign Push
-        run: |
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false mtr.devops.telekom.de/caas/entsoe:latest
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false mtr.devops.telekom.de/caas/entsoe:${VERSION}
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/caas-team/entsoe:latest
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/caas-team/entsoe:${VERSION}
-        env:
-          VERSION: ${{ steps.meta.outputs.tags }}
-          COSIGN_KEY: ${{secrets.COSIGN_KEY}}
+        with:
+          run: |
+            cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tags }}
+          tags: |
+            mtr.devops.telekom.de/caas/entsoe:latest
+            ghcr.io/caas-team/entsoe:latest
+            ${{ steps.meta.outputs.tags }}
+          env:
+            COSIGN_KEY: ${{secrets.COSIGN_KEY}}
  
