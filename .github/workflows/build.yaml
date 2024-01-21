@@ -1,7 +1,7 @@
 name: Build Image
 on: push
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,6 +16,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
+            type=raw,value=latest
       - name: Install Cosign
         uses: sigstore/cosign-installer@main
         with:
@@ -46,14 +47,17 @@ jobs:
             mtr.devops.telekom.de/caas/entsoe:latest
             ghcr.io/caas-team/entsoe:latest
             ${{ steps.meta.outputs.tags }}
+  sign:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tags: ${{ needs.build.steps.meta.outputs.tags }}
+    steps:
+      - uses: actions/checkout@v2
       - name: Sign Push
         run: |
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tag }}
-        with:
-          tag: mtr.devops.telekom.de/caas/entsoe:latest
-          tag: ghcr.io/caas-team/entsoe:latest
-          tag: |
-            ${{ steps.meta.outputs.tags }}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tags }}
         env:
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
- 
