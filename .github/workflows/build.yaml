@@ -48,11 +48,11 @@ jobs:
             ${{ steps.meta.outputs.tags }}
       - name: Sign Push
         run: |
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tags }}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${{ tag }}
         with:
-          tags: |
-            mtr.devops.telekom.de/caas/entsoe:latest
-            ghcr.io/caas-team/entsoe:latest
+          tag: mtr.devops.telekom.de/caas/entsoe:latest
+          tag: ghcr.io/caas-team/entsoe:latest
+          tag: |
             ${{ steps.meta.outputs.tags }}
           env:
             COSIGN_KEY: ${{secrets.COSIGN_KEY}}
