@@ -24,7 +24,7 @@ entsoe:
   #entsoe_api_key:
   image:
     repository: mtr.devops.telekom.de/caas/entsoe
-    tag: 0.0.7
+    tag: 0.0.10
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
