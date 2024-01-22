@@ -1,55 +1,56 @@
-name: Build Image & Chart
-
+name: Build Image
 on: push
-#  push:
-#    branches:
-#      - main
-    
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            mtr.devops.telekom.de/caas/entsoe
+            ghcr.io/caas-team/entsoe
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=raw,value=latest
       - name: Install Cosign
         uses: sigstore/cosign-installer@main
         with:
           cosign-release: 'v2.2.0'
-      - name: Login Build Sign Push
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to MTR
+        uses: docker/login-action@v3
+        with:
+          registry: mtr.devops.telekom.de
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        id: build-push
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            mtr.devops.telekom.de/caas/entsoe:latest
+            ghcr.io/caas-team/entsoe:latest
+            ${{ steps.meta.outputs.tags }}
+      - name: Sign Push
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${GHR} -u ${{ github.actor }} --password-stdin
-          docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${MTR}
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          export DOCKER_BUILDKIT=1
-          docker build -f Dockerfile -t ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION} .
-          docker tag ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION} ${MTR}/caas/${IMAGE}:${VERSION}
-          docker push ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION}
-          docker push ${MTR}/${ORG}/${IMAGE}:${VERSION}
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${GHR}/${{ github.repository_owner }}/${IMAGE}:${VERSION}
-          cosign sign --key env://COSIGN_KEY --tlog-upload=false ${MTR}/${ORG}/${IMAGE}:${VERSION}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/caas-team/entsoe@${{ steps.build-push.outputs.digest }}
+          cosign sign --key env://COSIGN_KEY --tlog-upload=false mtr.devops.telekom.de/caas/entsoe@${{ steps.build-push.outputs.digest }}
         env:
-          IMAGE: entsoe
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          GHR: ghcr.io
-          MTR: mtr.devops.telekom.de
-          ORG: caas
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
-          #COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
-      - name: Helm lint & package & push
-        run: |
-          cd chart
-          helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
-          helm registry login ${GHR} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-          helm registry login ${MTR} -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-          helm dependency build
-          helm lint .
-          helm package .
-          helm push $(ls *.tgz| head -1) oci://${GHR}/${{ github.repository_owner }}/charts
-          helm push $(ls *.tgz| head -1) oci://${MTR}/${ORG}/charts
-        env:
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          GHR: ghcr.io
-          MTR: mtr.devops.telekom.de
-          ORG: caas
