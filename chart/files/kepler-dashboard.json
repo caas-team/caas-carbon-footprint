@@ -100,7 +100,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $coal\n)\n",
+          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $coal\n)",
           "hide": false,
           "legendFormat": "CO2 Coal",
           "range": true,
@@ -112,7 +112,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $petroleum\n)\n",
+          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $petroleum\n)",
           "hide": false,
           "legendFormat": "CO2 Petroleum",
           "range": true,
@@ -124,7 +124,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $natural_gas\n)\n",
+          "expr": "sum by (container_namespace)(\n  (\n    increase(kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m]) +\n    increase(kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  ) * $watt_per_second_to_kWh * $natural_gas\n)",
           "hide": false,
           "legendFormat": "CO2 Natural Gas",
           "range": true,
