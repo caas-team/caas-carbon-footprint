@@ -1,9 +1,9 @@
 name: Build Chart
 
-on: push
-#  push:
-#    branches:
-#      - main
+on:
+  push:
+    branches:
+      - main
     
 jobs:
   build:
