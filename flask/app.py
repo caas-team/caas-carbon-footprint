@@ -171,14 +171,15 @@ def metrics():
     if result_sum:
         result_eco = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
     else:
-        result_eco = 0
+        result_eco = -1
     #######################################
     # Fossil part
     #######################################
     if result_sum:
         result_fos = (int(result_b02) + int(result_b04) + int(result_b05)) / int(result_sum)
     else:
-        result_fos = 0
+        result_sum = -1
+        result_fos = -1
     #######################################
     # CO2 gramm/watt second
     #######################################
