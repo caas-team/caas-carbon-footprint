@@ -161,6 +161,11 @@ CO2 emissions factor:
 
 In [Example folder](./examples) are use cases and ideas.
 
+
+## Presentations
+
+The [Presentation folder](./presentations) is used for presentation on conferences and meetups.
+
 ## Credits
 
 Life is for sharing. If you have an issue with the code or want to improve it, feel free to open an issue or an pull request.
