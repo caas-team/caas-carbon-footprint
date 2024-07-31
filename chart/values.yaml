@@ -8,7 +8,7 @@ kepler:
   image:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
-    tag: release-0.7.8
+    tag: release-0.7.11
   resources:
     limits:
       cpu: 800m
