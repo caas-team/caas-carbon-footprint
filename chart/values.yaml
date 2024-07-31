@@ -8,7 +8,7 @@ kepler:
   image:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
-    tag: release-0.7.2
+    tag: release-0.7.8
   resources:
     limits:
       cpu: 800m
@@ -24,7 +24,7 @@ entsoe:
   #entsoe_api_key:
   image:
     repository: mtr.devops.telekom.de/caas/entsoe
-    tag: 0.0.12
+    tag: 0.0.14
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
