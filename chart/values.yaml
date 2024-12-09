@@ -1,8 +1,9 @@
 # Install Kepler Exporter from Kepler Chart
 kepler:
+  enabled: true
   # dashboard setting remark: https://www.eia.gov/tools/faqs/faq.php?id=74&t=11
-  global:
-    namespace: cattle-monitoring-system
+  #global:
+  #  namespace: cattle-monitoring-system
   selectorLabels:
       app.kubernetes.io/name: caas-carbon-footprint
   image:
@@ -16,6 +17,13 @@ kepler:
     requests:
       cpu: 200m
       memory: 128Mi
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+    # name:
+  serviceMonitor:
+    enabled: true
 
 # Install Entsoe Exporter
 entsoe:
@@ -55,6 +63,7 @@ entsoe:
   # beware of the API request limit 
   # sec. 1.8 https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
   serviceMonitor:
+    enabled: true
     interval: 10m
   # hours back when entsoe metrics should collected
   # note: sometimes no real time data for Germany, must be at least one day back 
@@ -63,5 +72,5 @@ entsoe:
 # install app in Rancher environment
 # this will user Rancher defined namespaces and labels
 rancher:
-  enabled: true
+  enabled: false
   cattleDashboards: false

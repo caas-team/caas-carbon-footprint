@@ -3,14 +3,15 @@ annotations:
   catalog.cattle.io/display-name: CaaS Carbon Footprint
 name: caas-carbon-footprint
 description: A Helm chart for carbon footprint measurement
-version: "0.0.14"
-appVersion: "0.0.14"
+version: "0.0.15"
+appVersion: "0.0.15"
 keywords:
   - monitoring
 dependencies:
   - name: kepler
-    version: "0.5.7"
+    version: "0.5.12"
     repository: "https://sustainable-computing-io.github.io/kepler-helm-chart"
+    condition: kepler.enabled
 sources:
   - https://github.com/sustainable-computing-io/kepler
 maintainers:
