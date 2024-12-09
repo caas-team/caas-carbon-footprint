@@ -1,0 +1,75 @@
+{{ if .Values.kyverno.enabled }}
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: kepler-{{ include "caas-carbon-footprint.fullname" . }}
+  labels:
+    app.kubernetes.io/component: kepler
+    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}
+  {{- if .Values.kyverno.namespace }}
+  namespace: {{ .Values.kyverno.namespace }}
+  {{- end }}
+spec:
+  exceptions:
+  - policyName: disallow-host-namespaces
+    ruleNames:
+    - autogen-host-namespaces
+  - policyName: disallow-host-path
+    ruleNames:
+    - autogen-host-path
+  - policyName: disallow-host-ports
+    ruleNames:
+    - autogen-host-ports-none
+  - policyName: disallow-privilege-escalation
+    ruleNames:
+    - autogen-privilege-escalation
+  - policyName: disallow-privileged-containers
+    ruleNames:
+    - autogen-privileged-containers
+  - policyName: drop-all-capabilities
+    ruleNames:
+    - autogen-require-drop-all
+    - autogen-validate-readOnlyRootFilesystem
+  - policyName: require-run-as-nonroot
+    ruleNames:
+    - autogen-run-as-non-root
+  - policyName: restrict-controlplane-scheduling
+    ruleNames:
+    - autogen-restrict-controlplane-scheduling-control-plane
+  - policyName: require-ro-rootfs
+    ruleNames:
+    - autogen-validate-readOnlyRootFilesystem
+  match:
+    any:
+    - resources:
+        kinds:
+        - Pod
+        - DaemonSet
+        names:
+        - {{ include "caas-carbon-footprint.fullname" . }}*
+        namespaces:
+        - {{ .Release.Namespace }}
+{{- end }}
+{{ if .Values.kyverno.clusterRole }}
+---
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: kepler-{{ include "caas-carbon-footprint.fullname" . }}-clusterrole
+  labels:
+    app.kubernetes.io/component: kepler
+    {{- include "caas-carbon-footprint.labels" . | nindent 4 }}
+  {{- if .Values.kyverno.namespace }}
+  namespace: {{ .Values.kyverno.namespace }}
+  {{- end }}
+
+spec:
+  exceptions:
+  - policyName: restrict-clusterrole-nodesproxy
+    ruleNames:
+    - clusterrole-nodesproxy
+  match:
+    any:
+    - clusterRoles:
+      - {{ include "caas-carbon-footprint.fullname" . }}-kepler-clusterrole
+{{- end }}
