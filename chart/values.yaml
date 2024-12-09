@@ -25,6 +25,14 @@ kepler:
   serviceMonitor:
     enabled: true
 
+# Add PolicyException if Kyverno is installed
+kyverno:
+  enabled: false
+  # addexception as well for the nodes clusterrole
+  clusterRole: false
+  # target namespace to apply the PolicyException if this is not release namespace
+  # namespace: kyverno-policies
+
 # Install Entsoe Exporter
 entsoe:
   enabled: true
