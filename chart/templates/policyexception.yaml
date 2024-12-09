@@ -58,7 +58,8 @@ spec:
         - Pod
         - DaemonSet
         names:
-        - {{ .Release.Name }}*
+        - {{ .Release.Name }}-kepler
+        - entsoe-{{ .Release.Name }}-caas-carbon-footprint*
         namespaces:
         - {{ .Release.Namespace }}
 {{- end }}
