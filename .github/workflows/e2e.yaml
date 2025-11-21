@@ -1,0 +1,104 @@
+name: End to End test
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - fix/float
+
+jobs:
+  test-chart:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        k8s:
+          - v1.31.0
+          - v1.32.0
+          - v1.33.0
+          - v1.34.0
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # -------------------------------------------------------
+      # Install Helm
+      # -------------------------------------------------------
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          helm version
+
+      # -------------------------------------------------------
+      # Create kind cluster
+      # -------------------------------------------------------
+      - name: Create kind cluster ${{ matrix.k8s }}
+        uses: helm/kind-action@v1.13.0
+        with:
+          version: ${{ matrix.k8s }}
+          cluster_name: test-${{ matrix.k8s }}
+
+      # -------------------------------------------------------
+      # Install Helm chart
+      # -------------------------------------------------------
+      - name: Install Helm chart
+          env:
+            ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
+        run: |
+          helm upgrade --install caas-carbon-footprint ./chart \
+            --namespace caas --create-namespace \
+            --set entsoe.entsoe_api_key="$ENTSOE_API_KEY" \
+            --wait --timeout 5m
+
+      # -------------------------------------------------------
+      # Wait until all pods are Ready
+      # -------------------------------------------------------
+      - name: Wait for pods to be ready
+        run: |
+          kubectl wait --for=condition=Ready pods --all -n caas --timeout=300s
+          kubectl get pods -n caas
+
+      # -------------------------------------------------------
+      # Port-forward and Post-Install Curl Test
+      # -------------------------------------------------------
+      - name: Run Post-Install HTTP Check
+        run: |
+          # service name + port (adjust as needed)
+          SERVICE=entsoe-caas-carbon-footprint
+          PORT=80
+          EXPECTED="OK"
+
+          kubectl port-forward svc/$SERVICE -n caas 8080:$PORT >/tmp/pf.log 2>&1 &
+
+          # Wait until the port-forward is up
+          for i in {1..20}; do
+            sleep 1
+            curl -sf http://localhost:8080 && break || true
+          done
+
+          # test output
+          curl  http://localhost:8080
+
+          OUTPUT=$(curl -s http://localhost:8080)
+          echo "Output: $OUTPUT"
+
+          if [[ "$OUTPUT" != *"$EXPECTED"* ]]; then
+            echo "❌ Expected output not found!"
+            exit 1
+          fi
+
+          echo "✔ Output validated successfully"
+
+      # -------------------------------------------------------
+      # Debug info on failure
+      # -------------------------------------------------------
+      - name: Dump logs on failure
+        if: failure()
+        run: |
+          kubectl get all -A
+          kubectl describe pods -A
+          kubectl logs -l app=caas-carbon-footprint -n caas --tail=200 || true
+
