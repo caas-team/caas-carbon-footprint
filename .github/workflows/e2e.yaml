@@ -96,6 +96,7 @@ jobs:
 
           # test output
           curl -v  http://localhost:8080/metrics
+          kubectl logs -l app=caas-carbon-footprint -n caas --tail=200 || true
           exit
 
           OUTPUT=$(curl -s http://localhost:8080)
