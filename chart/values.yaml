@@ -23,7 +23,7 @@ kepler:
     create: true
     # name:
   serviceMonitor:
-    enabled: true
+    enabled: false
 
 # Add PolicyException if Kyverno is installed
 kyverno:
@@ -73,7 +73,7 @@ entsoe:
   # beware of the API request limit 
   # sec. 1.8 https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
   serviceMonitor:
-    enabled: true
+    enabled: false
     interval: 10m
   # hours back when entsoe metrics should collected
   # note: sometimes no real time data for Germany, must be at least one day back 
