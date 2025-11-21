@@ -74,7 +74,10 @@ jobs:
       - name: Wait for pods to be ready
         run: |
           kubectl wait --for=condition=Ready pods --all -n caas --timeout=300s
-          kubectl get pods -n caas
+          echo kubectl get pods -n caas
+          kubectl get pods -n caas --show-labels
+          echo kubectl get services -n caas
+          kubectl get services -n caas
 
       # -------------------------------------------------------
       # Port-forward and Post-Install Curl Test
