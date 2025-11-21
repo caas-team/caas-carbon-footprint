@@ -101,7 +101,7 @@ jobs:
           #curl -v  http://localhost:8080/metrics
           #kubectl logs -l app.kubernetes.io/name=caas-carbon-footprint -n caas --tail=200 || true
 
-          OUTPUT=$(curl -s http://localhost:8080)
+          OUTPUT=$(curl -s http://localhost:8080/metrics)
           echo "Output: $OUTPUT"
 
           if [[ "$OUTPUT" != *"$EXPECTED"* ]]; then
