@@ -45,8 +45,8 @@ jobs:
       # Install Helm chart
       # -------------------------------------------------------
       - name: Install Helm chart
-          env:
-            ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
+        env:
+          ENTSOE_API_KEY: ${{ secrets.ENTSOE_API_KEY }}
         run: |
           helm upgrade --install caas-carbon-footprint ./chart \
             --namespace caas --create-namespace \
