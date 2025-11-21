@@ -1,5 +1,5 @@
 .venv
 secret.yaml
 schiff*
-chart/charts/kepler
+chart/charts/
 chart/s01.yaml
