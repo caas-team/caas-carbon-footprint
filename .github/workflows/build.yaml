@@ -1,8 +1,8 @@
 name: Build Image
 on:
   push:
-#    branches:
-#      - main
+    branches:
+      - fix/float
     tags:        
       - '*'
 jobs:

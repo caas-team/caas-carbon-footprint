@@ -1,6 +1,6 @@
-FROM mtr.devops.telekom.de/mcsps/python:3.10-slim
+FROM mtr.devops.telekom.de/mcsps/python:3-slim
 LABEL org.opencontainers.image.authors="caas-request@telekom.de"
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 LABEL description="Python Flask Entsoe App"
 
 ENV DEBIAN_FRONTEND=noninteractive
