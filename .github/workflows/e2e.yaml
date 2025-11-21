@@ -1,7 +1,7 @@
 name: End to End test
 
 on:
-  workflow_dispatch: {}
+  #workflow_dispatch: {}
   pull_request:
   push:
     branches:
@@ -87,7 +87,7 @@ jobs:
           # service name + port (adjust as needed)
           SERVICE=entsoe-caas-carbon-footprint
           PORT=80
-          EXPECTED="OK"
+          EXPECTED="entsoe_generation_b01"
 
           kubectl port-forward svc/$SERVICE -n caas 8080:$PORT >/tmp/pf.log 2>&1 &
 
@@ -98,9 +98,8 @@ jobs:
           done
 
           # test output
-          curl -v  http://localhost:8080/metrics
-          kubectl logs -l app.kubernetes.io/name=caas-carbon-footprint -n caas --tail=200 || true
-          exit
+          #curl -v  http://localhost:8080/metrics
+          #kubectl logs -l app.kubernetes.io/name=caas-carbon-footprint -n caas --tail=200 || true
 
           OUTPUT=$(curl -s http://localhost:8080)
           echo "Output: $OUTPUT"
