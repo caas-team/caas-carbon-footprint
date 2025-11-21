@@ -164,26 +164,26 @@ def metrics():
     #######################################
     # Summary Energy Generation
     #######################################
-    result_sum = int(result_b01) + int(result_b02) + int(result_b04) + int(result_b05) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b14) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)
+    result_sum = int(float(result_b01)) + int(float(result_b02)) + int(float(result_b04)) + int(float(result_b05)) + int(float(result_b09)) + int(float(result_b10)) + int(float(result_b11)) + int(float(result_b12)) + int(float(result_b14)) + int(float(result_b16)) + int(float(result_b17)) + int(float(result_b18)) + int(float(result_b19))
     #######################################
     # Bio efficience
     #######################################
     if result_sum:
-        result_eco = (int(result_b01) + int(result_b09) + int(result_b10) + int(result_b11) + int(result_b12) + int(result_b16) + int(result_b17) + int(result_b18) + int(result_b19)) / int(result_sum)
+        result_eco = (int(float(result_b01)) + int(float(result_b09)) + int(float(result_b10)) + int(float(result_b11)) + int(float(result_b12)) + int(float(result_b16)) + int(float(result_b17)) + int(float(result_b18)) + int(float(result_b19))) / int(result_sum)
     else:
         result_eco = -1
     #######################################
     # Fossil part
     #######################################
     if result_sum:
-        result_fos = (int(result_b02) + int(result_b04) + int(result_b05)) / int(result_sum)
+        result_fos = (int(float(result_b02)) + int(float(result_b04)) + int(float(result_b05))) / int(result_sum)
     else:
         result_sum = -1
         result_fos = -1
     #######################################
     # CO2 gramm/watt second
     #######################################
-    result_co2 = ((int(result_b02) * (fac_b02 / 3600) / 1000 / 1000) + (int(result_b04) * (fac_b04 / 3600) / 1000 / 1000) + (int(result_b05) * (fac_b05 / 3600) / 1000 / 1000) + (int(result_b01) * (fac_b01 / 3600) / 1000 / 1000) + (int(result_b09) * (fac_b09/ 3600) / 1000 / 1000) + (int(result_b10) * (fac_b10 / 3600) / 1000 / 1000) + (int(result_b11) * (fac_b11 / 3600) / 1000 / 1000) + (int(result_b12) * (fac_b12 / 3600) / 1000 / 1000) + (int(result_b16) * (fac_b16 / 3600) / 1000 / 1000) + (int(result_b17) * (fac_b17 / 3600) / 1000 / 1000) + (int(result_b18) * (fac_b18 / 3600) / 1000 / 1000)  + (int(result_b19) * (fac_b19 / 3600) / 1000 / 1000))
+    result_co2 = ((int(float(result_b02)) * (fac_b02 / 3600) / 1000 / 1000) + (int(float(result_b04)) * (fac_b04 / 3600) / 1000 / 1000) + (int(float(result_b05)) * (fac_b05 / 3600) / 1000 / 1000) + (int(float(result_b01)) * (fac_b01 / 3600) / 1000 / 1000) + (int(float(result_b09)) * (fac_b09/ 3600) / 1000 / 1000) + (int(float(result_b10)) * (fac_b10 / 3600) / 1000 / 1000) + (int(float(result_b11)) * (fac_b11 / 3600) / 1000 / 1000) + (int(float(result_b12)) * (fac_b12 / 3600) / 1000 / 1000) + (int(float(result_b16)) * (fac_b16 / 3600) / 1000 / 1000) + (int(float(result_b17)) * (fac_b17 / 3600) / 1000 / 1000) + (int(float(result_b18)) * (fac_b18 / 3600) / 1000 / 1000)  + (int(float(result_b19)) * (fac_b19 / 3600) / 1000 / 1000))
     #######################################
     # Print Out Metrics
     #######################################

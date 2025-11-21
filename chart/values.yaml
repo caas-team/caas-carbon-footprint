@@ -9,7 +9,7 @@ kepler:
   image:
     repository: mtr.devops.telekom.de/caas/kepler
     pullPolicy: Always
-    tag: release-0.7.12
+    tag: release-0.9
   resources:
     limits:
       cpu: 800m
@@ -23,7 +23,7 @@ kepler:
     create: true
     # name:
   serviceMonitor:
-    enabled: true
+    enabled: false
 
 # Add PolicyException if Kyverno is installed
 kyverno:
@@ -40,7 +40,7 @@ entsoe:
   #entsoe_api_key:
   image:
     repository: mtr.devops.telekom.de/caas/entsoe
-    tag: 0.0.15
+    tag: 1.0.0
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
@@ -72,7 +72,7 @@ entsoe:
   # beware of the API request limit 
   # sec. 1.8 https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
   serviceMonitor:
-    enabled: true
+    enabled: false
     interval: 10m
   # hours back when entsoe metrics should collected
   # note: sometimes no real time data for Germany, must be at least one day back 
