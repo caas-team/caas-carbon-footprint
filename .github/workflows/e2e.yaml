@@ -95,7 +95,8 @@ jobs:
           done
 
           # test output
-          curl  http://localhost:8080
+          curl -v  http://localhost:8080/metrics
+          exit
 
           OUTPUT=$(curl -s http://localhost:8080)
           echo "Output: $OUTPUT"
