@@ -66,6 +66,7 @@ jobs:
           helm upgrade --install caas-carbon-footprint . \
             --namespace caas --create-namespace \
             --set entsoe.entsoe_api_key="$ENTSOE_API_KEY" \
+            --set entsoe.image.tag=latest \
             --wait --timeout 5m
 
       # -------------------------------------------------------
