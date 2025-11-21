@@ -2,7 +2,7 @@ name: Build Image
 on:
   push:
     branches:
-      - fix/float
+      - main
     tags:        
       - '*'
 jobs:
