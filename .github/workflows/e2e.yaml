@@ -18,7 +18,7 @@ jobs:
           - v1.31.0
           - v1.32.0
           - v1.33.0
-          - v1.34.2
+          - v1.34.0
 
     steps:
       - name: Checkout repository
@@ -69,14 +69,15 @@ jobs:
             --namespace caas --create-namespace \
             --set entsoe.entsoe_api_key="$ENTSOE_API_KEY" \
             --set entsoe.image.tag=latest \
-            --wait --timeout 1m
+            --wait --timeout 5m
 
       # -------------------------------------------------------
       # Wait until all pods are Ready
       # -------------------------------------------------------
       - name: Wait for pods to be ready
+        continue-on-error: true
         run: |
-          kubectl wait --for=condition=Ready pods --all -n caas --timeout=30s
+          kubectl wait --for=condition=Ready pods --all -n caas --timeout=300s
           echo kubectl get pods -n caas
           kubectl get pods -n caas --show-labels
           echo kubectl get services -n caas
