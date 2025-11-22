@@ -75,7 +75,6 @@ jobs:
       # Wait until all pods are Ready
       # -------------------------------------------------------
       - name: Wait for pods to be ready
-        continue-on-error: true
         run: |
           kubectl wait --for=condition=Ready pods --all -n caas --timeout=30s
           echo kubectl get pods -n caas
@@ -87,7 +86,6 @@ jobs:
       # Port-forward and Post-Install Curl Test
       # -------------------------------------------------------
       - name: Run Post-Install HTTP Check
-        continue-on-error: true
         run: |
           # service name + port (adjust as needed)
           SERVICE=entsoe-caas-carbon-footprint
@@ -99,7 +97,7 @@ jobs:
           # Wait until the port-forward is up
           for i in {1..20}; do
             sleep 1
-            curl -sf http://localhost:8080 && break
+            curl -sf http://localhost:8080 && break || true
           done
 
           # test output
