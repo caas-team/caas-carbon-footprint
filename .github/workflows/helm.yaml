@@ -2,6 +2,8 @@ name: Build Chart
 
 on:
   push:
+    paths:
+    - 'chart/'
     branches:
       - main
     tags:        
