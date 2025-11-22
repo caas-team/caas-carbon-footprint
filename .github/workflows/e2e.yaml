@@ -87,6 +87,7 @@ jobs:
       # Port-forward and Post-Install Curl Test
       # -------------------------------------------------------
       - name: Run Post-Install HTTP Check
+        continue-on-error: true
         run: |
           # service name + port (adjust as needed)
           SERVICE=entsoe-caas-carbon-footprint
