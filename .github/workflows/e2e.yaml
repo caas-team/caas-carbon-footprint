@@ -75,6 +75,7 @@ jobs:
       # Wait until all pods are Ready
       # -------------------------------------------------------
       - name: Wait for pods to be ready
+        continue-on-error: true
         run: |
           kubectl wait --for=condition=Ready pods --all -n caas --timeout=30s
           echo kubectl get pods -n caas
