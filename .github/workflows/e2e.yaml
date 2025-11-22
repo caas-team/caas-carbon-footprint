@@ -53,6 +53,7 @@ jobs:
             --wait 60s
 
           kubectl cluster-info
+          kubectl get nodes
 
       # -------------------------------------------------------
       # Install Helm chart
