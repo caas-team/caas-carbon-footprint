@@ -78,6 +78,8 @@ entsoe:
   # note: sometimes no real time data for Germany, must be at least one day back 
   start: 1
   end: 0
+  # toggle http debug mode
+  # debug: 1
 # install app in Rancher environment
 # this will user Rancher defined namespaces and labels
 rancher:

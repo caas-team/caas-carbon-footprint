@@ -40,6 +40,8 @@ spec:
           value: "{{ .Values.entsoe.end }}"
         - name: entsoe_start
           value: "{{ .Values.entsoe.start }}"
+        - name: entsoe_debug
+          value: "{{ .Values.entsoe.debug }}"
         {{- if .Values.entsoe.proxy.enabled }}
         - name: https_proxy
           value: "{{ .Values.entsoe.proxy.protocol }}://{{ .Values.entsoe.proxy.host }}:{{ .Values.entsoe.proxy.port }}"
