@@ -7,6 +7,8 @@ import pandas as pd
 import json
 import jq
 import xmltodict
+import logging
+import http.client as http_client
 
 app = Flask(__name__)
 
@@ -14,6 +16,7 @@ app = Flask(__name__)
 entsoe_api_key = environ.get('entsoe_api_key')
 entsoe_start = environ.get('entsoe_start') or 25
 entsoe_end = environ.get('entsoe_end') or 24
+entsoe_debug = environ.get("entsoe_debug", "0") == "1"
 
 @app.route('/metrics', methods=['GET'])
 def metrics():
@@ -21,6 +24,10 @@ def metrics():
     # Create Entsoe client with API key
     #######################################
     client = EntsoeRawClient(api_key=entsoe_api_key)
+    if entsoe_debug:
+        http_client.HTTPConnection.debuglevel = 1
+        logging.basicConfig(level=logging.DEBUG)
+        logging.getLogger("urllib3").setLevel(logging.DEBUG)
     # Compute the time window from yesterday within 1 hour
     today = datetime.today()
     TwentyFour = (today - timedelta(hours = int(entsoe_end) ))

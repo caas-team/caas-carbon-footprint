@@ -7,7 +7,7 @@ kepler:
   selectorLabels:
       app.kubernetes.io/name: caas-carbon-footprint
   image:
-    repository: mtr.devops.telekom.de/caas/kepler
+    repository: quay.io/sustainable_computing_io/kepler
     pullPolicy: Always
     tag: release-0.9
   resources:
@@ -39,8 +39,8 @@ entsoe:
   # apply for token here: https://transparency.entsoe.eu/content/static_content/download?path=/Static%20content/API-Token-Management.pdf
   #entsoe_api_key:
   image:
-    repository: mtr.devops.telekom.de/caas/entsoe
-    tag: 1.0.0
+    repository: ghcr.io/caas-team/entsoe
+    tag: 1.0.1
     pullPolicy: Always
   podSecurityContext:
     fsGroup: 1000
@@ -78,6 +78,8 @@ entsoe:
   # note: sometimes no real time data for Germany, must be at least one day back 
   start: 1
   end: 0
+  # toggle http debug mode
+  # debug: 1
 # install app in Rancher environment
 # this will user Rancher defined namespaces and labels
 rancher:
