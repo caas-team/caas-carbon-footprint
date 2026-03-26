@@ -105,7 +105,7 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-          - image: mtr.devops.telekom.de/caas/k8s-tools:latest
+          - image: ghcr.io/mcsps/k8s-tools:latest
             imagePullPolicy: Always
             name: carbon-cronjob
             command: ["sh","-c"]
